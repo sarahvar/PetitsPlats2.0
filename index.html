@@ -20,15 +20,15 @@
         <!--Main Search-->
         <div class="hero-banner">
             <h1>
-                CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET
+                CHERCHEZ PARMI PLUS DE 1500 recipesS DU QUOTIDIEN,SIMPLES ET
                 DÉLICIEUSES
             </h1>
             <form>
                 <input
                   type="search"
                   id="search"
-                  placeholder="Rechercher une recette, un ingrédient, ..."
-                  aria-label="Rechercher une recette, un ingrédient, ..."
+                  placeholder="Rechercher une recipes, un ingrédient, ..."
+                  aria-label="Rechercher une recipes, un ingrédient, ..."
                 />
                 <div class="icon" id="icon">
                     <svg
@@ -51,3 +51,54 @@
               </form>
         </div>
     </header>
+    <main class="containerxl">
+      <section class="topbar">
+       <div class="container">
+         <div class="select" id="selectIngredients">
+           <div class="select__btn">
+             <span class="select__btn-subtitle">Ingrédients</span>
+             <i class="fa-solid fa-chevron-down"></i>
+           </div>
+           <div class="select__content">
+             <div class="select__content__search">
+               <i class="select-icon fa-solid fa-magnifying-glass"></i>
+               <input class="select__content__search-inputSearch" type="text" aria-label="Rechercher par ingrédient" />
+             </div>
+             <ul class="select__content-options"></ul>
+           </div>
+         </div>
+         <div class="select" id="selectAppareils">
+           <div class="select__btn">
+             <span class="select__btn-subtitle">Appareils</span>
+             <i class="select-icon fa-solid fa-chevron-down" aria-label="Rechercher par appareils"></i>
+           </div>
+           <div class="select__content">
+             <div class="select__content__search">
+               <i class="select-icon fa-solid fa-magnifying-glass"></i>
+               <input class="select__content__search-inputSearch" type="text" aria-label="Rechercher par appareils" />
+             </div>
+             <ul class="select__content-options"></ul>
+           </div>
+         </div>
+         <div class="select" id="selectUstensiles">
+           <div class="select__btn">
+             <span class="select__btn-subtitle">Ustensils</span>
+             <i class="select-icon fa-solid fa-chevron-down"></i>
+           </div>
+           <div class="select__content">
+             <div class="select__content__search">
+               <i class="select-icon fa-solid fa-magnifying-glass"></i>
+               <input class="select__content__search-inputSearch" type="text" aria-label="Rechercher par ustensils" />
+             </div>
+             <ul class="select__content-options"></ul>
+           </div>
+         </div>
+       </div>
+        <div id="tags" class="tags"></div>
+      </section>
+      <section id="recipes" class="recipes"></section>
+    </main>
+</body>
+<script src="./scripts/pages/index.js" type="module" defer></script>
+<script src="./factories/recipes.js"></script>
+</html>

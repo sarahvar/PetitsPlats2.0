@@ -89,3 +89,249 @@ header {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+/* Recipes */
+.containerxl {
+    max-width: 300px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.recipes {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    margin-top: 55px;
+    padding-bottom: 55px;
+}
+
+.recipe {
+    background: #ffffff;
+    box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
+    border-radius: 21px;
+    overflow: hidden;
+    padding-bottom: 61px;
+}
+
+.recipe img {
+    height: 253px;
+    object-fit: cover;
+}
+
+.recipe-h2,
+.recipe-header,
+.recipe-ingredient {
+    padding: 0 25px;
+}
+
+.recipe-h2 {
+    font-size: 1.8em;
+    color: #000000;
+    margin: 32px 0 29px;
+}
+
+.recipe-small-title {
+    display: block;
+    color: #7a7a7a;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    letter-spacing: 0.09em;
+}
+
+.recipe-content {
+    font-size: 1.4em;
+    color: #1b1b1b;
+    font-weight: 400;
+    margin-bottom: 32px;
+}
+
+.recipe-container-ingredient {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 21px;
+}
+
+.recipe-container-ingredient li {
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-title {
+    font-size: 1.4em;
+    font-weight: 500;
+    color: #1b1b1b;
+}
+
+.recipe-subtitle {
+    font-size: 1.4em;
+    color: #7a7a7a;
+    font-weight: 400;
+}
+/* Select */
+
+.topbar {
+    margin-top: 21px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 66px;
+
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 66px;
+}
+
+.select {
+    max-width: 195px;
+    width: 195px;
+    font-size: 1.6em;
+    font-weight: 500;
+    color: #1b1b1b;
+    background: #ffffff;
+    border-radius: 11px;
+    cursor: pointer;
+}
+
+.select__btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 65px;
+    padding: 0 16px;
+}
+
+.select__btn-subtitle,
+.select__btn-subtitle i {
+    font-size: 1.6em;
+}
+
+.select__btn-subtitle i {
+    width: 13px;
+    height: 6px;
+}
+
+.select__btn i {
+    font-size: 16px;
+    transition: transform 250ms ease-in-out;
+}
+
+.select.select--active .select__btn i {
+    transform: rotate(-180deg);
+}
+
+.select__content {
+    display: none;
+    margin-top: 15px;
+    background: #ffffff;
+    border-radius: 11px;
+}
+
+.select.select--active .select__content {
+    display: block;
+}
+
+.select__content .select__content__search {
+    position: relative;
+    padding: 0 16px;
+}
+
+.select__content__search i {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #C6C6C6;
+}
+
+.select__content__search input {
+    height: 36px;
+    width: 100%;
+    border: 2px solid #C6C6C6;
+    color: #7A7A7A;
+    font-size: 1.4em;
+    font-style: normal;
+    padding-left: 8px;
+}
+
+.select__content .select__content-options {
+    margin-top: 15px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.select__content-options::-webkit-scrollbar {
+    width: 7px;
+}
+
+.select__content-options::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 25px;
+}
+
+.select__content-options::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 25px;
+    color: #1b1b1b;
+}
+
+.select__content-options li {
+    font-size: 1.4em;
+    color: #1b1b1b;
+    font-weight: 400;
+    transition: background-color 250ms ease-in-out;
+    padding: 9px 0;
+    padding-left: 16px;
+}
+
+.select__content-options li:hover {
+    background: #ffd15b;
+}
+
+.selected {
+    background: #ffd15b;
+}
+
+.tags {
+    display: flex;
+    gap: 33px;
+}
+
+.tags span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    padding: 17px 18px;
+    border-radius: 10px;
+    background: #FFD15B;
+    width: 203px;
+    height: 53px;
+}
+
+.tags span img {
+    cursor: pointer;
+    width: 10px;
+    height: 10px
+}
+
+.noIngredient {
+    text-align: center;
+    padding: 16px 0;
+}
+
+.notFound p {
+    font-size: 2.2em;
+}
+
+.notFound strong {
+    font-size: 22px;
+}
