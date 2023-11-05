@@ -330,6 +330,7 @@ header {
     background: #FFD15B;
     width: 203px;
     height: 53px;
+    margin: 1rem;
 }
 
 .tags span img {

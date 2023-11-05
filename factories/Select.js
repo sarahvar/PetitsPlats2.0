@@ -105,7 +105,7 @@ export class Select {
       const newTag = document.createElement("span");
       const image = document.createElement("img");
       image.className = "img";
-      image.src = "../../../assets/header/Vector.svg";
+      image.src = "../assets/Vector.svg";
       image.alt = "Vector cross";
       newTag.textContent = name;
   
