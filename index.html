@@ -2,103 +2,93 @@
 <html lang="fr">
 
 <head>
-    <link href="css/style.css" rel="stylesheet" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <script src="https://kit.fontawesome.com/34d40b7fd3.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope&display=swap" rel="stylesheet" />
-    <title>Les Petits plats</title>
+  <link href="css/style.css" rel="stylesheet" />
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <script src="https://kit.fontawesome.com/34d40b7fd3.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope&display=swap" rel="stylesheet" />
+  <title>Les Petits plats</title>
 </head>
 
 <body>
-    <!----Header-->
-    <header>
-        <img src="assets/header.jpg" alt="une assiette">
-        <div class="header-logo">
-            <img src="./assets/Logo.svg" alt="Logo des petits plats" loading="lazy" />
+  <!----Header-->
+  <header>
+    <img src="assets/header.jpg" alt="une assiette">
+    <div class="header-logo">
+      <img src="./assets/Logo.svg" alt="Logo des petits plats" loading="lazy" />
+    </div>
+    <!--Main Search-->
+    <div class="hero-banner">
+      <h1>
+        CHERCHEZ PARMI PLUS DE 1500 recipesS DU QUOTIDIEN,SIMPLES ET
+        DÉLICIEUSES
+      </h1>
+      <form>
+        <input type="search" id="search" placeholder="Rechercher une recette, un ingrédient, ..."
+          aria-label="Rechercher une recette, un ingrédient, ..." />
+        <div class="icon" id="icon">
+          <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10.4219" r="9.5" stroke="white" />
+            <line x1="18.3536" y1="19.0683" x2="27.3536" y2="28.0683" stroke="white" />
+          </svg>
         </div>
-        <!--Main Search-->
-        <div class="hero-banner">
-            <h1>
-                CHERCHEZ PARMI PLUS DE 1500 recipesS DU QUOTIDIEN,SIMPLES ET
-                DÉLICIEUSES
-            </h1>
-            <form>
-                <input
-                  type="search"
-                  id="search"
-                  placeholder="Rechercher une recipes, un ingrédient, ..."
-                  aria-label="Rechercher une recipes, un ingrédient, ..."
-                />
-                <div class="icon" id="icon">
-                    <svg
-                      width="28"
-                      height="29"
-                      viewBox="0 0 28 29"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle cx="10" cy="10.4219" r="9.5" stroke="white" />
-                      <line
-                        x1="18.3536"
-                        y1="19.0683"
-                        x2="27.3536"
-                        y2="28.0683"
-                        stroke="white"
-                      />
-                    </svg>
-                  </div>
-              </form>
+      </form>
+    </div>
+  </header>
+  <main class="containerxl">
+    <section class="topbar">
+      <div class="container">
+        <div class="select" id="selectIngredients">
+          <div class="select__btn">
+            <span class="select__btn-subtitle">Ingrédients</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="select__content">
+            <div class="select__content__search">
+              <i class="select-icon fa-solid fa-magnifying-glass"></i>
+              <input class="select__content__search-inputSearch" type="text" aria-label="Rechercher par ingrédient" />
+            </div>
+            <ul class="select__content-options"></ul>
+          </div>
         </div>
-    </header>
-    <main class="containerxl">
-      <section class="topbar">
-       <div class="container">
-         <div class="select" id="selectIngredients">
-           <div class="select__btn">
-             <span class="select__btn-subtitle">Ingrédients</span>
-             <i class="fa-solid fa-chevron-down"></i>
-           </div>
-           <div class="select__content">
-             <div class="select__content__search">
-               <i class="select-icon fa-solid fa-magnifying-glass"></i>
-               <input class="select__content__search-inputSearch" type="text" aria-label="Rechercher par ingrédient" />
-             </div>
-             <ul class="select__content-options"></ul>
-           </div>
-         </div>
-         <div class="select" id="selectAppareils">
-           <div class="select__btn">
-             <span class="select__btn-subtitle">Appareils</span>
-             <i class="select-icon fa-solid fa-chevron-down" aria-label="Rechercher par appareils"></i>
-           </div>
-           <div class="select__content">
-             <div class="select__content__search">
-               <i class="select-icon fa-solid fa-magnifying-glass"></i>
-               <input class="select__content__search-inputSearch" type="text" aria-label="Rechercher par appareils" />
-             </div>
-             <ul class="select__content-options"></ul>
-           </div>
-         </div>
-         <div class="select" id="selectUstensiles">
-           <div class="select__btn">
-             <span class="select__btn-subtitle">Ustensils</span>
-             <i class="select-icon fa-solid fa-chevron-down"></i>
-           </div>
-           <div class="select__content">
-             <div class="select__content__search">
-               <i class="select-icon fa-solid fa-magnifying-glass"></i>
-               <input class="select__content__search-inputSearch" type="text" aria-label="Rechercher par ustensils" />
-             </div>
-             <ul class="select__content-options"></ul>
-           </div>
-         </div>
-       </div>
-        <div id="tags" class="tags"></div>
-      </section>
-      <section id="recipes" class="recipes"></section>
-    </main>
+        <div class="select" id="selectAppareils">
+          <div class="select__btn">
+            <span class="select__btn-subtitle">Appareils</span>
+            <i class="select-icon fa-solid fa-chevron-down" aria-label="Rechercher par appareils"></i>
+          </div>
+          <div class="select__content">
+            <div class="select__content__search">
+              <i class="select-icon fa-solid fa-magnifying-glass"></i>
+              <input class="select__content__search-inputSearch" type="text" aria-label="Rechercher par appareils" />
+            </div>
+            <ul class="select__content-options"></ul>
+          </div>
+        </div>
+        <div class="select" id="selectUstensiles">
+          <div class="select__btn">
+            <span class="select__btn-subtitle">Ustensiles</span>
+            <i class="select-icon fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="select__content">
+            <div class="select__content__search">
+              <i class="select-icon fa-solid fa-magnifying-glass"></i>
+              <input class="select__content__search-inputSearch" type="text" aria-label="Rechercher par ustensiles" />
+            </div>
+            <ul class="select__content-options"></ul>
+                 <!-- Nombre total de recettes -->
+          </div>
+        </div>
+        <div id="totalRecipes">
+          <span id="summer"></span>
+      </div>
+      </div>
+      <div id="tags" class="tags"></div>
+    </section>
+    </div>
+    <section id="recipes" class="recipes"></section>
+  </main>
 </body>
 <script src="./scripts/pages/index.js" type="module" defer></script>
 <script src="./factories/recipes.js"></script>
+
 </html>

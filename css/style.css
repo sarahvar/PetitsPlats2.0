@@ -15,6 +15,9 @@ html {
     font-weight: 700;
 }
 
+body{
+    background-color: #E5E5E5;
+}
 
 h1 {
     font-family: "Anton", sans-serif;
@@ -89,6 +92,18 @@ header {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+/* Styles du total des recettes */
+#totalRecipes {
+    display:flex;
+    position:relative;
+    justify-content:right;
+    align-items:center;
+    margin:0.5rem;
+    top: 13px;
+    font-family: "Anton";
+    font-size: 23px;
+    color: #1B1B1B
+  }
 /* Recipes */
 .containerxl {
     max-width: 300px;
@@ -100,7 +115,6 @@ header {
     display: flex;
     flex-direction: column;
     gap: 48px;
-    margin-top: 55px;
     padding-bottom: 55px;
 }
 
@@ -113,7 +127,7 @@ header {
 }
 
 .recipe img {
-    height: 253px;
+    height: 402px;
     object-fit: cover;
 }
 
@@ -181,7 +195,6 @@ header {
 
 .container {
     display: flex;
-    flex-wrap: wrap;
     align-items: flex-start;
     gap: 66px;
 }
@@ -334,4 +347,21 @@ header {
 
 .notFound strong {
     font-size: 22px;
+}
+
+@media only screen and (min-width: 1024px) {
+    .containerxl {
+        max-width: 900px;
+        margin-top: 650px;
+    }
+
+    .recipes {
+        flex-direction: initial;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .recipe {
+        max-width: 268px;
+    }
 }

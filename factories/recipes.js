@@ -155,6 +155,7 @@ export class Recipes {
     return filteredRecipes
   }
 
+
   displayRecipes(recipes) {
     if (!recipes) {
       recipes = this.#data;
