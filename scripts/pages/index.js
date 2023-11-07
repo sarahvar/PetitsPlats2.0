@@ -1,7 +1,7 @@
-import { Recipes } from "../../factories/Recipes.js";
+import { Recettes } from "../../factories/Recettes.js";
 import { Select } from "../../factories/Select.js";
 
-const recipes = new Recipes();
+const recipes = new Recettes();
 
 let selectIngredients, selectAppareils, selectUstensiles;
 let searchResult = [...recipes.data];

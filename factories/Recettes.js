@@ -1,6 +1,6 @@
 import { recipes } from "../data/recipes.js";
 
-export class Recipes {
+export class Recettes {
   #data = [];
   #recipeContainer = null;
   #totalRecipes = null;

@@ -108,7 +108,6 @@ header {
   }
 /* Recipes */
 .containerxl {
-    max-width: 300px;
     margin: 0 auto;
     width: 100%;
 }
@@ -353,9 +352,7 @@ header {
 }
 
 @media only screen and (min-width: 1024px) {
-    .containerxl {
-        max-width: 900px;
-    }
+
 
     .recipes {
         flex-direction: initial;
@@ -364,6 +361,6 @@ header {
     }
 
     .recipe {
-        max-width: 268px;
+        max-width: 30%;
     }
 }
