@@ -180,19 +180,25 @@ const resetSelects = () => {
   selectIngredients.updateListItem(loadIngredients(searchResult));
 }
 
-// Function to initialize events on page load
-// Fonction pour initialiser les événements lors du chargement de la page
+// Fonction pour initialiser les événements, notamment la recherche
 const initializeEvents = () => {
+  // Récupère l'élément du champ de recherche par son identifiant "search"
   const searchValue = document.getElementById("search");
-
+// Ajoute un gestionnaire d'événements pour l'événement "keyup" (relâchement de touche) sur le champ de recherche
   searchValue.addEventListener("keyup", () => {
+    // Met à jour la variable 'searchTerms' avec la valeur du champ de recherche
     searchTerms = searchValue.value;
+     // Utilise la fonction de délai (debounce) pour éviter une recherche instantanée à chaque frappe
     const callSearch = debounce(() => {
       searchRecipes(searchTerms);
     }, 300);
+    // Vérifie si la longueur des termes de recherche est supérieure ou égale à 3
     if (searchTerms.length >= 3) {
-      callSearch();
+       // Si oui, appelle la fonction de recherche avec un délai de 300 millisecondes
+       callSearch();
     } else {
+      // Si la longueur des termes de recherche est inférieure à 3
+      // Réinitialise l'affichage des recettes, ainsi que les sélecteurs d'ingrédients, d'appareils et d'ustensiles
       recipes.displayRecipes();
       selectIngredients.reset();
       selectAppareils.reset();
@@ -208,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeEvents();
 
   // Create Select instances
-  // Création des instances de Select
+  // Créer des instances de sélection
   selectIngredients = new Select({
     selectElement: "#selectIngredients",
     defaultSelectLabel: "Ingrédients",
