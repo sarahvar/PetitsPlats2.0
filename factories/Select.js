@@ -1,6 +1,6 @@
 export class Select {
   // Class properties
-  s// Propriétés de classe
+  // Propriétés de classe
   select = null;
   selectBtn = null;
   options = null;
@@ -16,7 +16,7 @@ export class Select {
   onDeleteTagEvent = null;
 
   listItem = [];
-  #initialListItems = [];
+  initialListItems = [];
 
   // Constructor initializes the Select class with provided parameters
   // Le constructeur initialise la classe Select avec les paramètres fournis
@@ -63,7 +63,7 @@ export class Select {
 
     // Set initial and current list items
     // Définissez les éléments de liste initiaux et actuels
-    this.#initialListItems = [...initialListItem];
+    this.initialListItems = [...initialListItem];
     this.listItem = [...initialListItem];
     this.createListItems(this.listItem);
   }
@@ -199,7 +199,7 @@ export class Select {
     });
 
     this.btnLabel.innerText = this.defaultLabel;
-    this.listItem = [...this.#initialListItems];
+    this.listItem = [...this.initialListItems];
     this.createListItems(this.listItem);
 
     if ((this.onResetEvent !== null) && (emitEvent)) {
