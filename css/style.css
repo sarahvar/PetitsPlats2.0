@@ -131,6 +131,15 @@ header {
     height: 402px;
     object-fit: cover;
 }
+.timeCooking {
+  color:black;
+  font-weight:550;
+  right: 30px;
+  top: 30px;
+  background-color: #ffd15b;
+  border-radius: 25px;
+  padding: 10px 20px;
+}
 
 .recipe-h2,
 .recipe-header,

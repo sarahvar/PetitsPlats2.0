@@ -8,23 +8,23 @@ export class Recettes {
   data = [];
   recipeContainer = null;
   totalRecipes = null;
-  time = null;
+  timeCooking = null;
   // Constructor initializes class properties with the provided recipes and selects DOM elements
   // Le constructeur initialise les propriétés de la classe avec les recettes fournies et sélectionne les éléments DOM
   constructor() {
     this.data = [...recipes];
     this.recipeContainer = document.querySelector("#recipes");
     this.totalRecipes = document.querySelector("#totalRecipes");
-    this.time = document.querySelector("#timeCooking");
+    this.timeCooking = document.querySelector("#timeCooking");
   }
 
   // Generates HTML for a recipe card
   // Génère du HTML pour une carte de recette
-  _generateHTMLCard(recipe, ingredientInsertHtml, time) {
+  _generateHTMLCard(recipe, ingredientInsertHtml) {
     return `
       <article class="recipe">
           <img src=../assets/images/${recipe.image} alt=${recipe.name} loading="lazy" />
-          <div class="timeCooking">${time} min </div>
+          <span class="timeCooking">${recipe.time} min </span>
           <h2 class="recipe-h2">${recipe.name}</h2>
           <section class="recipe-header">
             <span class="recipe-small-title">recette</span>
