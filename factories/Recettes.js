@@ -24,7 +24,7 @@ export class Recettes {
     return `
       <article class="recipe">
           <img src=../assets/images/${recipe.image} alt=${recipe.name} loading="lazy" />
-          <span class="timeCooking">${recipe.time} min </span>
+          <span class="timeCooking">${recipe.time}min </span>
           <h2 class="recipe-h2">${recipe.name}</h2>
           <section class="recipe-header">
             <span class="recipe-small-title">recette</span>
