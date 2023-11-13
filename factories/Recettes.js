@@ -9,14 +9,13 @@ export class Recettes {
   recipeContainer = null;
   totalRecipes = null;
   time = null;
-
   // Constructor initializes class properties with the provided recipes and selects DOM elements
   // Le constructeur initialise les propriétés de la classe avec les recettes fournies et sélectionne les éléments DOM
   constructor() {
     this.data = [...recipes];
     this.recipeContainer = document.querySelector("#recipes");
     this.totalRecipes = document.querySelector("#totalRecipes");
-    this.time = document.querySelector("#COOKING_TIME")
+    this.time = document.querySelector("#timeCooking");
   }
 
   // Generates HTML for a recipe card
@@ -25,7 +24,7 @@ export class Recettes {
     return `
       <article class="recipe">
           <img src=../assets/images/${recipe.image} alt=${recipe.name} loading="lazy" />
-          <span class="#COOKING_TIME">${time}</span>
+          <div class="timeCooking">${time} min </div>
           <h2 class="recipe-h2">${recipe.name}</h2>
           <section class="recipe-header">
             <span class="recipe-small-title">recette</span>
@@ -102,7 +101,7 @@ export class Recettes {
   searchRecipes(searchTerms) {
     searchTerms = searchTerms.toLowerCase()
     return this.data.filter((recipe) => {
-      const { name, description, ingredients } = recipe;
+      const { name, description, ingredients, } = recipe;
       const lowerCaseName = name.toLowerCase();
       const lowerCaseDescription = description.toLowerCase();
       const hasIngredient = this._hasIngredientMatch(ingredients, searchTerms);
