@@ -132,10 +132,11 @@ header {
     object-fit: cover;
 }
 .timeCooking {
+  position:relative;  
   color:black;
   font-weight:550;
-  right: 30px;
-  top: 30px;
+  left: 350px;
+  top: -38rem;
   background-color: #ffd15b;
   border-radius: 25px;
   padding: 10px 20px;
