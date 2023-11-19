@@ -1,11 +1,11 @@
 // Import necessary modules
 // Importation des modules nécessaires
-import { Recettes } from "../../factories/Recettes.js";
+import { Search} from "../../factories/Recettes.js";
 import { Select } from "../../factories/Select.js";
 
 // Create an instance of the Recettes class
 // Création d'une instance de la classe Recettes
-const recipes = new Recettes();
+const recipes = new Search();
 
 // Initialize Select instances and variables
 // Initialisation des instances de Select et des variables

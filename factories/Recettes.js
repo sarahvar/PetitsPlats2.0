@@ -2,7 +2,7 @@
 // Importation des recettes depuis le fichier de données
 import { recipes } from "../data/recipes.js";
 
-export class Recettes {
+export class Search {
   // Class properties
   // Propriétés de classe
   data = [];
