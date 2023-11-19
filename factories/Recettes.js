@@ -225,7 +225,7 @@ export class Recettes {
 
   // Getter for the data
   // Créer un getter pour les données
-  get data() {
+  get recipesData() {
     return this.data;
   }
 }

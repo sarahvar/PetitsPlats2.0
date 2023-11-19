@@ -1,7 +1,7 @@
 // Import necessary modules
 // Importation des modules nécessaires
 import { Recettes } from "../../factories/Recettes.js";
-import { Select } from "../../factories/Select.js";
+import { Filters } from "../../factories/Filters.js";
 
 // Create an instance of the Recipes class
 // Création d'une instance de la classe Recettes
@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                                  //PARTIE SELECT
   // Create Select instances
   // Créer des instances de sélection
-  selectIngredients = new Select({
+  selectIngredients = new Filters({
     selectElement: "#selectIngredients",
     defaultSelectLabel: "Ingrédients",
     initialListItem: loadIngredients(recipes.data),
@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resetEventCallBack: handleSelectOnResetEvent
   });
 
-  selectAppareils = new Select({
+  selectAppareils = new Filters({
     selectElement: "#selectAppareils",
     defaultSelectLabel: "Appareils",
     initialListItem: loadAppareils(recipes.data),
@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resetEventCallBack: handleSelectOnResetEvent
   });
 
-  selectUstensiles = new Select({
+  selectUstensiles = new Filters ({
     selectElement: "#selectUstensiles",
     defaultSelectLabel: "Ustensils",
     initialListItem: loadUstensils(recipes.data),
