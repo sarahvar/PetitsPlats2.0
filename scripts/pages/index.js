@@ -95,9 +95,9 @@ const searchRecipes = (searchTerms) => {
     result: searchResult
   });
 
-  selectIngredients.updateListItem(loadIngredients(searchResult));
-  selectAppareils.updateListItem(loadAppareils(searchResult));
-  selectUstensiles.updateListItem(loadUstensils(searchResult));
+  selectIngredients.  updateSelectedItems(loadIngredients(searchResult));
+  selectAppareils.  updateSelectedItems(loadAppareils(searchResult));
+  selectUstensiles.  updateSelectedItems(loadUstensils(searchResult));
 };
 
 // Function to handle search event on select ingredient
@@ -112,15 +112,15 @@ const handleSelectIngredientOnSearchEvent = (searchTerms) => {
 
   searchResult = [...filteredResults];
 
-  selectAppareils.updateListItem(loadAppareils(filteredResults));
-  selectUstensiles.updateListItem(loadUstensils(filteredResults));
+  selectAppareils.  updateSelectedItems(loadAppareils(filteredResults));
+  selectUstensiles.  updateSelectedItems(loadUstensils(filteredResults));
 
   recipes.displaySearchResult({
     searchTerms: searchTerms,
     result: filteredResults
   });
 
-  selectIngredients.updateListItem(loadIngredients(filteredResults));
+  selectIngredients.  updateSelectedItems(loadIngredients(filteredResults));
 };
 
 // Function to handle search event on select appliance
@@ -132,15 +132,15 @@ const handleSelectApplianceOnSearchEvent = (searchTerms) => {
 
   searchResult = [...filteredResults];
 
-  selectIngredients.updateListItem(loadIngredients(filteredResults));
-  selectUstensiles.updateListItem(loadUstensils(filteredResults));
+  selectIngredients.  updateSelectedItems(loadIngredients(filteredResults));
+  selectUstensiles.  updateSelectedItems(loadUstensils(filteredResults));
 
   recipes.displaySearchResult({
     searchTerms: searchTerms,
     result: filteredResults
   });
 
-  selectAppareils.updateListItem(loadAppareils(filteredResults));
+  selectAppareils.  updateSelectedItems(loadAppareils(filteredResults));
 };
 
 // Function to handle search event on select ustensils
@@ -155,15 +155,15 @@ const handleSelectUstensilsOnSearchEvent = (searchTerms) => {
 
   searchResult = [...filteredResults];
 
-  selectIngredients.updateListItem(loadIngredients(filteredResults));
-  selectAppareils.updateListItem(loadAppareils(filteredResults));
+  selectIngredients.  updateSelectedItems(loadIngredients(filteredResults));
+  selectAppareils.  updateSelectedItems(loadAppareils(filteredResults));
 
   recipes.displaySearchResult({
     searchTerms: searchTerms,
     result: filteredResults
   });
 
-  selectUstensiles.updateListItem(loadUstensils(filteredResults));
+  selectUstensiles.  updateSelectedItems(loadUstensils(filteredResults));
 };
 
 // Function to handle reset event on selects
@@ -175,9 +175,9 @@ const handleSelectOnResetEvent = () => {
 // Function to reset all selects
 // Fonction pour réinitialiser toutes les sélections
 const resetSelects = () => {
-  selectAppareils.updateListItem(loadAppareils(searchResult));
-  selectUstensiles.updateListItem(loadUstensils(searchResult));
-  selectIngredients.updateListItem(loadIngredients(searchResult));
+  selectAppareils.  updateSelectedItems(loadAppareils(searchResult));
+  selectUstensiles.  updateSelectedItems(loadUstensils(searchResult));
+  selectIngredients.  updateSelectedItems(loadIngredients(searchResult));
 }
 
 // Fonction pour initialiser les événements, notamment la recherche

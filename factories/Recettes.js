@@ -17,6 +17,7 @@ export class Recettes {
     this.totalRecipes = document.querySelector("#totalRecipes");
     this.timeCooking = document.querySelector("#timeCooking");
   }
+                                          //DISPLAY RECIPES
                                           //AFFICHAGE DES RECETTES
 
   // Generates HTML for a recipe card

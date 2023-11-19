@@ -1,3 +1,4 @@
+//SEARCH WITH TAGS IN INGREDIENTS, APPLIANCES AND UTENSILS
 //RECHERCHE AVEC LES TAGS DANS LES INGREDIENTS, APPAREILS ET USTENSILES
 
 
@@ -82,7 +83,7 @@ export class Select {
   createListItems(listOfItems) {
     this.options.innerHTML = "";
     listOfItems.forEach((item) => {
-      this.createItem(item);
+      this. createItemElement(item);
     });
     this.optionsItems = this.options.querySelectorAll("li");
   }
@@ -181,7 +182,7 @@ export class Select {
 
   // Creates a list item in the options container
   // Crée un élément de liste dans le conteneur des options
-  createItem({ name, isSelected }) {
+   createItemElement({ name, isSelected }) {
     let li = document.createElement("li");
     li.textContent = name;
     li.className = isSelected ? "selected" : "";
@@ -234,8 +235,8 @@ export class Select {
 
   // Updates the list of items with new values
   // Met à jour la liste des éléments avec de nouvelles valeurs
-  updateListItem(newListItem) {
-    const updatedListItem = newListItem.map((item) => {
+  updateSelectedItems(newListItem) {
+    const updateSelectedItem = newListItem.map((item) => {
       const index = this.listItem.findIndex((findItem) => item.name === findItem.name);
       if (index >= 0) {
         return {
@@ -246,7 +247,7 @@ export class Select {
       return item;
     });
 
-    this.listItem = [...updatedListItem];
+    this.listItem = [...updateSelectedItem];
     this.createListItems(this.listItem);
   }
 
