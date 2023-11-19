@@ -1,5 +1,4 @@
 export class Select {
-  // Class properties
   // Propriétés de classe
   select = null;
   selectBtn = null;
@@ -18,8 +17,7 @@ export class Select {
   listItem = [];
   initialListItems = [];
 
-  // Constructor initializes the Select class with provided parameters
-  // Le constructeur initialise la classe Select avec les paramètres fournis
+  // Constructeur initialise la classe Select avec les paramètres fournis
   constructor({
                 selectElement = null,
                 initialListItem,
@@ -28,21 +26,16 @@ export class Select {
                 deleteTagEventCallBack = null,
                 resetEventCallBack = null
               }) {
-    // Check if HTML Select element is provided
-    // Vérifiez si l'élément HTML Select est fourni
     if (selectElement === null) {
       throw Error("HTML Select is required!");
     }
-    // If selectElement is a string, find the corresponding DOM element
-    // Si selectElement est une chaîne de caractères, recherchez l'élément DOM correspondant
+
     if (typeof selectElement !== "string") {
       this.select = selectElement;
     } else {
       this.select = document.querySelector(selectElement);
     }
 
-    // Initialize other properties and set up initial list items
-    // Initialisez les autres propriétés et configurez les éléments de la liste initiale
     this.selectBtn = this.select.querySelector(".select__btn");
     this.btnLabel = this.selectBtn.firstElementChild;
     const content = this.select.querySelector(".select__content");
@@ -51,40 +44,31 @@ export class Select {
     this.tags = document.getElementById("tags");
     this.defaultLabel = defaultSelectLabel;
 
-    // Assign callback functions
-    // Affectez les fonctions de callback
     this.onSearchEvent = searchEventCallback;
     this.onResetEvent = resetEventCallBack;
     this.onDeleteTagEvent = deleteTagEventCallBack;
 
-    // Initialize the instance
-    // Initialisez l'instance
     this.init();
 
-    // Set initial and current list items
-    // Définissez les éléments de liste initiaux et actuels
     this.initialListItems = [...initialListItem];
     this.listItem = [...initialListItem];
     this.createListItems(this.listItem);
   }
 
-  // Initialization method, sets up event listeners
   // Méthode d'initialisation, configure les écouteurs d'événements
   init() {
-    this._setupEventListeners();
+    this.setupEventListeners();
   }
 
-  // Creates list items in the options container
   // Crée des éléments de liste dans le conteneur des options
   createListItems(listOfItems) {
     this.options.innerHTML = "";
     listOfItems.forEach((item) => {
-      this._createItem(item);
+      this.createListItemElement(item);
     });
     this.optionsItems = this.options.querySelectorAll("li");
   }
 
-  // Deselects an item by its name
   // Désélectionne un élément par son nom
   deselectItemByName(name) {
     this.optionsItems.forEach((li) => {
@@ -101,7 +85,6 @@ export class Select {
     });
   }
 
-  // Removes a tag and deselects the corresponding item
   // Supprime une balise et désélectionne l'élément correspondant
   removeTag(tagToRemove) {
     console.log('REMOVE TAGS:', tagToRemove.innerText)
@@ -115,7 +98,6 @@ export class Select {
     }
   }
 
-  // Creates a tag element and adds it to the tags container
   // Crée un élément de balise et l'ajoute au conteneur des balises
   createTag(name) {
     const newTag = document.createElement("span");
@@ -133,34 +115,22 @@ export class Select {
     this.tags.appendChild(newTag);
   }
 
-  // Sets up event listeners for the select button and search input
   // Configure les écouteurs d'événements pour le bouton de sélection et la saisie de recherche
-  _setupEventListeners() {
+  setupEventListeners() {
     this.selectBtn.addEventListener("click", () => {
-      this.select.classList.toggle("select--active");
+      this.toggleSelect();
     });
     this.searchInput.addEventListener("input", () => {
-      this._searchItems();
+      this.searchItems();
     });
   }
 
-  // Handles click events on list items
   // Gère les événements de clic sur les éléments de liste
-  _handleItemClick(currentLi) {
+  handleListItemClick(currentLi) {
     if (currentLi.classList.contains("selected")) {
-      currentLi.classList.remove("selected");
-      this.select.classList.remove("select--active");
-      this.searchInput.value = "";
-      this.btnLabel.innerText = this.defaultLabel;
+      this.deselectListItem(currentLi);
     } else {
-      this.optionsItems.forEach((li) => {
-        li.classList.remove("selected");
-      });
-      currentLi.classList.add("selected");
-      this.btnLabel.innerText = currentLi.innerText;
-      this.selectedItem = currentLi.innerText;
-
-      this.createTag(currentLi.innerText);
+      this.selectListItem(currentLi);
     }
 
     this.listItem = this.listItem.map((item) => {
@@ -173,24 +143,22 @@ export class Select {
     if (this.onSearchEvent) {
       this.onSearchEvent(this.selectedItem);
     }
-    this.select.classList.toggle("select--active");
+    this.toggleSelect();
   }
 
-  // Creates a list item in the options container
   // Crée un élément de liste dans le conteneur des options
-  _createItem({ name, isSelected }) {
+  createListItemElement({ name, isSelected }) {
     let li = document.createElement("li");
     li.textContent = name;
     li.className = isSelected ? "selected" : "";
     li.addEventListener("click", () => {
-      this._handleItemClick(li);
+      this.handleListItemClick(li);
     });
     this.options.appendChild(li);
   }
 
-  // Unselects all items and optionally emits the reset event
   // Désélectionne tous les éléments et émet éventuellement l'événement de réinitialisation
-  _unselectAllItems(emitEvent = false) {
+  unselectAllItems(emitEvent = false) {
     console.log("UNSELECT ALL");
     this.optionsItems.forEach((li) => {
       if (li.classList.contains("selected")) {
@@ -208,9 +176,8 @@ export class Select {
     }
   }
 
-  // Searches items based on the input value
   // Recherche des éléments en fonction de la valeur d'entrée
-  _searchItems() {
+  searchItems() {
     const searchedValue = this.searchInput.value.toLowerCase().trim();
     const filteredItems = this.listItem.filter((item) =>
       item.name.toLowerCase().includes(searchedValue)
@@ -219,19 +186,17 @@ export class Select {
     if (filteredItems.length > 0) {
       this.createListItems(filteredItems);
     } else {
-      this.options.innerHTML = "<p class='noIngredient'> Aucun ingrédient </p>";
+      this.displayNoIngredientMessage();
     }
   }
 
-  // Getter for the list of selected items
   // Getter pour la liste des éléments sélectionnés
-  get listItem() {
+  get selectedItems() {
     return this.listItem;
   }
 
-  // Updates the list of items with new values
   // Met à jour la liste des éléments avec de nouvelles valeurs
-  updateListItem(newListItem) {
+  updateSelectedItems(newListItem) {
     const updatedListItem = newListItem.map((item) => {
       const index = this.listItem.findIndex((findItem) => item.name === findItem.name);
       if (index >= 0) {
@@ -247,11 +212,45 @@ export class Select {
     this.createListItems(this.listItem);
   }
 
-  // Resets the select and tags to their initial state
   // Réinitialise la sélection et les balises à leur état initial
-  reset() {
+  resetSelection() {
     this.selectedItem = "";
-    this._unselectAllItems();
+    this.unselectAllItems();
+    this.clearTags();
+  }
+
+  // Toggle la classe "select--active" sur l'élément select
+  toggleSelect() {
+    this.select.classList.toggle("select--active");
+  }
+
+  // Désélectionne un élément de liste
+  deselectListItem(li) {
+    li.classList.remove("selected");
+    this.select.classList.remove("select--active");
+    this.searchInput.value = "";
+    this.btnLabel.innerText = this.defaultLabel;
+  }
+
+  // Sélectionne un élément de liste
+  selectListItem(li) {
+    this.optionsItems.forEach((listItem) => {
+      listItem.classList.remove("selected");
+    });
+    li.classList.add("selected");
+    this.btnLabel.innerText = li.innerText;
+    this.selectedItem = li.innerText;
+
+    this.createTag(li.innerText);
+  }
+
+  // Affiche un message "Aucun ingrédient"
+  displayNoIngredientMessage() {
+    this.options.innerHTML = "<p class='noIngredient'> Aucun ingrédient </p>";
+  }
+
+  // Efface toutes les balises
+  clearTags() {
     this.tags.innerHTML = "";
   }
 }
