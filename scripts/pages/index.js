@@ -95,9 +95,9 @@ const searchRecipes = (searchTerms) => {
     result: searchResult
   });
 
-  selectIngredients.updateSelectedItems(loadIngredients(searchResult));
-  selectAppareils.updateSelectedItems(loadAppareils(searchResult));
-  selectUstensiles.updateSelectedItems(loadUstensils(searchResult));
+  selectIngredients.updateListItem(loadIngredients(searchResult));
+  selectAppareils.updateListItem(loadAppareils(searchResult));
+  selectUstensiles.updateListItem(loadUstensils(searchResult));
 };
 
 // Function to handle search event on select ingredient
@@ -112,15 +112,15 @@ const handleSelectIngredientOnSearchEvent = (searchTerms) => {
 
   searchResult = [...filteredResults];
 
-  selectAppareils.updateSelectedItems(loadAppareils(filteredResults));
-  selectUstensiles.updateSelectedItems(loadUstensils(filteredResults));
+  selectAppareils.updateListItem(loadAppareils(filteredResults));
+  selectUstensiles.updateListItem(loadUstensils(filteredResults));
 
   recipes.displaySearchResult({
     searchTerms: searchTerms,
     result: filteredResults
   });
 
-  selectIngredients.updateSelectedItems(loadIngredients(filteredResults));
+  selectIngredients.updateListItem(loadIngredients(filteredResults));
 };
 
 // Function to handle search event on select appliance
@@ -132,15 +132,15 @@ const handleSelectApplianceOnSearchEvent = (searchTerms) => {
 
   searchResult = [...filteredResults];
 
-  selectIngredients.updateSelectedItems(loadIngredients(filteredResults));
-  selectUstensiles.updateSelectedItems(loadUstensils(filteredResults));
+  selectIngredients.updateListItem(loadIngredients(filteredResults));
+  selectUstensiles.updateListItem(loadUstensils(filteredResults));
 
   recipes.displaySearchResult({
     searchTerms: searchTerms,
     result: filteredResults
   });
 
-  selectAppareils.updateSelectedItems(loadAppareils(filteredResults));
+  selectAppareils.updateListItem(loadAppareils(filteredResults));
 };
 
 // Function to handle search event on select ustensils
@@ -155,15 +155,15 @@ const handleSelectUstensilsOnSearchEvent = (searchTerms) => {
 
   searchResult = [...filteredResults];
 
-  selectIngredients.updateSelectedItems(loadIngredients(filteredResults));
-  selectAppareils.updateSelectedItems(loadAppareils(filteredResults));
+  selectIngredients.updateListItem(loadIngredients(filteredResults));
+  selectAppareils.updateListItem(loadAppareils(filteredResults));
 
   recipes.displaySearchResult({
     searchTerms: searchTerms,
     result: filteredResults
   });
 
-  selectUstensiles.updateSelectedItems(loadUstensils(filteredResults));
+  selectUstensiles.updateListItem(loadUstensils(filteredResults));
 };
 
 // Function to handle reset event on selects
@@ -175,9 +175,9 @@ const handleSelectOnResetEvent = () => {
 // Function to reset all selects
 // Fonction pour réinitialiser toutes les sélections
 const resetSelects = () => {
-  selectAppareils.updateSelectedItems(loadAppareils(searchResult));
-  selectUstensiles.updateSelectedItems(loadUstensils(searchResult));
-  selectIngredients.updateSelectedItems(loadIngredients(searchResult));
+  selectAppareils.updateListItem(loadAppareils(searchResult));
+  selectUstensiles.updateListItem(loadUstensils(searchResult));
+  selectIngredients.updateListItem(loadIngredients(searchResult));
 }
 
 // Fonction pour initialiser les événements, notamment la recherche
