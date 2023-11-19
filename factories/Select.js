@@ -1,3 +1,6 @@
+//RECHERCHE AVEC LES TAGS PARMIS LES INGREDIENTS, APPAREILS ET USTENSILS
+
+
 export class Select {
   // Class properties
   // Propriétés de classe
