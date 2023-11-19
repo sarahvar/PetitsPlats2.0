@@ -183,7 +183,7 @@ const resetSelects = () => {
 // Fonction pour initialiser les événements, notamment la recherche
 const initializeEvents = () => {
   // Récupère l'élément du champ de recherche par son identifiant "search"
-  const searchValue = document.getElementById("search");
+  const searchValue = document.getElementById("search-bar");
 // Ajoute un gestionnaire d'événements pour l'événement "keyup" (relâchement de touche) sur le champ de recherche
   searchValue.addEventListener("keyup", () => {
     // Met à jour la variable 'searchTerms' avec la valeur du champ de recherche

@@ -18,7 +18,7 @@ export class Recettes {
     this.timeCooking = document.querySelector("#timeCooking");
   }
                                           //AFFICHAGE DES RECETTES
-                                          
+
   // Generates HTML for a recipe card
   // Génère du HTML pour une carte de recette
   generateHTMLCard(recipe, ingredientInsertHtml) {
@@ -71,7 +71,7 @@ export class Recettes {
         `;
     }
   }
-                                            // BARRE DE RECHERCHE 
+                                            // BARRE DE RECHERCHE (SEARCH BAR)
 
   // Checks if there is a match for a given ingredient in a list
   // Vérifie s'il y a une correspondance pour un ingrédient donné dans une liste
