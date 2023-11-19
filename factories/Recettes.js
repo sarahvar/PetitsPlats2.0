@@ -2,7 +2,7 @@
 // Importation des recettes depuis le fichier de données
 import { recipes } from "../data/recipes.js";
 
-export class Search {
+export class Recettes {
   // Class properties
   // Propriétés de classe
   data = [];
@@ -17,7 +17,8 @@ export class Search {
     this.totalRecipes = document.querySelector("#totalRecipes");
     this.timeCooking = document.querySelector("#timeCooking");
   }
-
+                                          //AFFICHAGE DES RECETTES
+                                          
   // Generates HTML for a recipe card
   // Génère du HTML pour une carte de recette
   generateHTMLCard(recipe, ingredientInsertHtml) {
@@ -70,6 +71,7 @@ export class Search {
         `;
     }
   }
+                                            // BARRE DE RECHERCHE 
 
   // Checks if there is a match for a given ingredient in a list
   // Vérifie s'il y a une correspondance pour un ingrédient donné dans une liste

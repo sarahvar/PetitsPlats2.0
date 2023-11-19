@@ -1,11 +1,11 @@
 // Import necessary modules
 // Importation des modules nécessaires
-import { Search} from "../../factories/Recettes.js";
+import { Recettes } from "../../factories/Recettes.js";
 import { Select } from "../../factories/Select.js";
 
-// Create an instance of the Recettes class
+// Create an instance of the Recipes class
 // Création d'une instance de la classe Recettes
-const recipes = new Search();
+const recipes = new   Recettes();
 
 // Initialize Select instances and variables
 // Initialisation des instances de Select et des variables
@@ -212,7 +212,7 @@ const initializeEvents = () => {
 // Écouteur d'événement pour le chargement de la page
 document.addEventListener("DOMContentLoaded", () => {
   initializeEvents();
-
+                                                 //PARTIE SELECT
   // Create Select instances
   // Créer des instances de sélection
   selectIngredients = new Select({
