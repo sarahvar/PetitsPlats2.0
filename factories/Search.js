@@ -134,49 +134,6 @@ export class Search {
     return filteredRecipes
   }
 
-  // Displays recipes in the DOM
-  // Affiche les recettes dans le DOM
-  displayRecipes(recipes) {
-    if (!recipes) {
-      recipes = this.data;
-    }
-
-    if (this.totalRecipes) {
-      this.totalRecipes.innerHTML = `${recipes.length} recettes`;
-    }
-
-    this.recipeContainer.innerHTML = "";
-    const recipeCards = recipes.map((recipe) => {
-      let ingredientInsertHtml = recipe.ingredients
-        .map((ingredient) => generateHTMLIngredient(ingredient))
-        .join("");
-
-      return generateHTMLCard(recipe, ingredientInsertHtml);
-    });
-
-    this.recipeContainer.innerHTML += recipeCards.join("");
-  }
-
-  // Displays search results in the DOM
-  // Affiche les résultats de la recherche dans le DOM
-  displaySearchResult({ searchTerms, result }) {
-    if (this.totalRecipes) {
-      this.totalRecipes.innerHTML = `${result.length} recettes`;
-    }
-
-    if (result.length > 0) {
-      this.displayRecipes(result);
-      return;
-    }
-
-    this.recipeContainer.innerHTML = "";
-    this.recipeContainer.innerHTML = `
-      <div class="notFound">
-        <p>Aucune recette contient <strong>${searchTerms}</strong>. Vous pouvez chercher "tarte aux pommes", "poisson"</p>
-      </div>
-      `;
-  }
-
   // Getter for the data
   // Créer un getter pour les données
   get recipesData() {

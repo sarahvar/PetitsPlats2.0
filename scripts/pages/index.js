@@ -2,7 +2,7 @@
 // Importation des modules nécessaires
 import {  Search } from "../../factories/Search.js";
 import { FilterTags } from "../../factories/FilterTags.js";
-import { displayRecipes,  displaySearchResult} from "../../factories/Display.js";
+import { displayRecipes,  displaySearchResult } from "../../factories/Display.js";
 
 // Create an instance of the Recipes class
 // Création d'une instance de la classe Recettes
