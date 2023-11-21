@@ -49,16 +49,23 @@ export class Search {
   // Searches for recipes based on a search term
   // Recherche des recettes en fonction d'un terme de recherche (recherche principale)
   searchRecipes(searchTerms) {
-    searchTerms = searchTerms.toLowerCase()
+    searchTerms = searchTerms.toLowerCase();
+    
     return this.data.filter((recipe) => {
-      const { name, description, ingredients, } = recipe;
+      const { name, description, ingredients } = recipe;
       const lowerCaseName = name.toLowerCase();
       const lowerCaseDescription = description.toLowerCase();
-      const Ingredient = this.IngredientMatch(ingredients, searchTerms);
-      return lowerCaseName.includes(searchTerms) || lowerCaseDescription.includes(searchTerms) || Ingredient;
-    })
+  
+      if (lowerCaseName.includes(searchTerms) || lowerCaseDescription.includes(searchTerms)) {
+        return true; // Correspondance trouvée dans le nom ou la description
+      } else {
+        // Aucune correspondance dans le nom ou la description, vérifiez les ingrédients
+        const ingredientMatch = this.IngredientMatch(ingredients, searchTerms);
+        return ingredientMatch;
+      }
+    });
   }
-
+  
   // Searches for recipes based on multiple criteria (ingredient, appareil, ustensile)
   // Recherche des recettes en fonction de plusieurs critères (ingrédient, appareil, ustensile)
   searchRecipeExt(searchTerms, ingredientTags, appareilTags, ustensilTags) {
