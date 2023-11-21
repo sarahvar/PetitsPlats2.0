@@ -2,7 +2,7 @@
 //RECHERCHE AVEC LES TAGS DANS LES INGREDIENTS, APPAREILS ET USTENSILES
 
 
-export class Filters {
+export class FilterTags {
   // Class properties
   // Propriétés de classe
   select = null;

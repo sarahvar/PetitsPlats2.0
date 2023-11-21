@@ -1,11 +1,12 @@
 // Import necessary modules
 // Importation des modules nécessaires
-import { Recettes } from "../../factories/Recettes.js";
-import { Filters } from "../../factories/Filters.js";
+import {  Search } from "../../factories/Search.js";
+import { FilterTags } from "../../factories/FilterTags.js";
+import { displayRecipes,  displaySearchResult} from "../../factories/Display.js";
 
 // Create an instance of the Recipes class
 // Création d'une instance de la classe Recettes
-const recipes = new   Recettes();
+const recipes = new   Search();
 
 // Initialize Select instances and variables
 // Initialisation des instances de Select et des variables
@@ -90,7 +91,7 @@ const debounce = (callback, timeout = 200) => {
 // Fonction pour rechercher des recettes en fonction des termes de recherche
 const searchRecipes = (searchTerms) => {
   searchResult = recipes.searchRecipes(searchTerms);
-  recipes.displaySearchResult({
+  displaySearchResult({
     searchTerms: searchTerms,
     result: searchResult
   });
@@ -115,7 +116,7 @@ const handleSelectIngredientOnSearchEvent = (searchTerms) => {
   selectAppareils.  updateSelectedItems(loadAppareils(filteredResults));
   selectUstensiles.  updateSelectedItems(loadUstensils(filteredResults));
 
-  recipes.displaySearchResult({
+  displaySearchResult({
     searchTerms: searchTerms,
     result: filteredResults
   });
@@ -135,7 +136,7 @@ const handleSelectApplianceOnSearchEvent = (searchTerms) => {
   selectIngredients.  updateSelectedItems(loadIngredients(filteredResults));
   selectUstensiles.  updateSelectedItems(loadUstensils(filteredResults));
 
-  recipes.displaySearchResult({
+  displaySearchResult({
     searchTerms: searchTerms,
     result: filteredResults
   });
@@ -158,7 +159,7 @@ const handleSelectUstensilsOnSearchEvent = (searchTerms) => {
   selectIngredients.  updateSelectedItems(loadIngredients(filteredResults));
   selectAppareils.  updateSelectedItems(loadAppareils(filteredResults));
 
-  recipes.displaySearchResult({
+  displaySearchResult({
     searchTerms: searchTerms,
     result: filteredResults
   });
@@ -199,7 +200,7 @@ const initializeEvents = () => {
     } else {
       // Si la longueur des termes de recherche est inférieure à 3
       // Réinitialise l'affichage des recettes, ainsi que les sélecteurs d'ingrédients, d'appareils et d'ustensiles
-      recipes.displayRecipes();
+      displayRecipes();
       selectIngredients.reset();
       selectAppareils.reset();
       selectUstensiles.reset();
@@ -215,14 +216,14 @@ document.addEventListener("DOMContentLoaded", () => {
                                                  //PARTIE SELECT
   // Create Select instances
   // Créer des instances de sélection
-  selectIngredients = new Filters({
+  selectIngredients = new FilterTags({
     selectElement: "#selectIngredients",
     defaultSelectLabel: "Ingrédients",
     initialListItem: loadIngredients(recipes.data),
     searchEventCallback: handleSelectIngredientOnSearchEvent,
     deleteTagEventCallBack: (tags) => {
       searchResult = recipes.searchRecipeExt(searchTerms, tags, selectAppareils.listItem, selectUstensiles.listItem)
-      recipes.displaySearchResult({
+      displaySearchResult({
         searchTerms: "",
         result: searchResult
       });
@@ -232,14 +233,14 @@ document.addEventListener("DOMContentLoaded", () => {
     resetEventCallBack: handleSelectOnResetEvent
   });
 
-  selectAppareils = new Filters({
+  selectAppareils = new FilterTags({
     selectElement: "#selectAppareils",
     defaultSelectLabel: "Appareils",
     initialListItem: loadAppareils(recipes.data),
     searchEventCallback: handleSelectApplianceOnSearchEvent,
     deleteTagEventCallBack: (tags) => {
       searchResult = recipes.searchRecipeExt(searchTerms, selectIngredients.listItem, tags, selectUstensiles.listItem)
-      recipes.displaySearchResult({
+      displaySearchResult({
         searchTerms: "",
         result: searchResult
       });
@@ -248,14 +249,14 @@ document.addEventListener("DOMContentLoaded", () => {
     resetEventCallBack: handleSelectOnResetEvent
   });
 
-  selectUstensiles = new Filters ({
+  selectUstensiles = new FilterTags ({
     selectElement: "#selectUstensiles",
     defaultSelectLabel: "Ustensils",
     initialListItem: loadUstensils(recipes.data),
     searchEventCallback: handleSelectUstensilsOnSearchEvent,
     deleteTagEventCallBack: (tags) => {
       searchResult = recipes.searchRecipeExt(searchTerms, selectIngredients.listItem, selectAppareils.listItem, tags)
-      recipes.displaySearchResult({
+      displaySearchResult({
         searchTerms: "",
         result: searchResult
       });
@@ -264,5 +265,5 @@ document.addEventListener("DOMContentLoaded", () => {
     resetEventCallBack: handleSelectOnResetEvent
   });
 
-  recipes.displayRecipes();
+  displayRecipes();
 });

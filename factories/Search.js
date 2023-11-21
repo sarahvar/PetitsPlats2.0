@@ -1,8 +1,9 @@
 // Import recipes from the data file
 // Importation des recettes depuis le fichier de données
 import { recipes } from "../data/recipes.js";
+import {  generateHTMLCard, generateHTMLIngredient} from "./Display.js";
 
-export class Recettes {
+export class Search {
   // Class properties
   // Propriétés de classe
   data = [];
@@ -17,61 +18,7 @@ export class Recettes {
     this.totalRecipes = document.querySelector("#totalRecipes");
     this.timeCooking = document.querySelector("#timeCooking");
   }
-                                          //DISPLAY RECIPES
-                                          //AFFICHAGE DES RECETTES
 
-  // Generates HTML for a recipe card
-  // Génère du HTML pour une carte de recette
-  generateHTMLCard(recipe, ingredientInsertHtml) {
-    return `
-      <article class="recipe">
-          <img src=../assets/images/${recipe.image} alt=${recipe.name} loading="lazy" />
-          <span class="timeCooking">${recipe.time}min </span>
-          <h2 class="recipe-h2">${recipe.name}</h2>
-          <section class="recipe-header">
-            <span class="recipe-small-title">recette</span>
-            <p class="recipe-content">
-              ${recipe.description}
-            </p>
-          </section>
-          <section class="recipe-ingredient">
-            <span class="recipe-small-title">Ingrédients</span>
-            <ul class="recipe-container-ingredient">
-            ${ingredientInsertHtml}
-            </ul>
-          </section>
-        </article>
-      `;
-  }
-
-  // Generates HTML for an ingredient
-  // Génère du HTML pour un ingrédient
-  generateHTMLIngredient(ingredient) {
-    if (ingredient.unit === "" || ingredient.unit === undefined) {
-      if (ingredient.quantity) {
-        return `
-        <li>
-          <span class="recipe-title">${ingredient.ingredient}</span>
-          <span class="recipe-subtitle">${ingredient.quantity}</span>
-        </li>
-        `;
-      } else {
-        return `
-        <li>
-          <span class="recipe-title">${ingredient.ingredient}</span>
-          <span class="recipe-subtitle">-</span>
-        </li>
-        `;
-      }
-    } else {
-      return `
-        <li>
-          <span class="recipe-title">${ingredient.ingredient}</span>
-          <span class="recipe-subtitle">${ingredient.quantity} ${ingredient.unit}</span>
-        </li>
-        `;
-    }
-  }
                                             // BARRE DE RECHERCHE (SEARCH BAR)
 
   // Checks if there is a match for a given ingredient in a list
@@ -100,7 +47,7 @@ export class Recettes {
   }
 
   // Searches for recipes based on a search term
-  // Recherche des recettes en fonction d'un terme de recherche
+  // Recherche des recettes en fonction d'un terme de recherche (recherche principale)
   searchRecipes(searchTerms) {
     searchTerms = searchTerms.toLowerCase()
     return this.data.filter((recipe) => {
@@ -194,10 +141,10 @@ export class Recettes {
     this.recipeContainer.innerHTML = "";
     const recipeCards = recipes.map((recipe) => {
       let ingredientInsertHtml = recipe.ingredients
-        .map((ingredient) => this.generateHTMLIngredient(ingredient))
+        .map((ingredient) => generateHTMLIngredient(ingredient))
         .join("");
 
-      return this.generateHTMLCard(recipe, ingredientInsertHtml);
+      return generateHTMLCard(recipe, ingredientInsertHtml);
     });
 
     this.recipeContainer.innerHTML += recipeCards.join("");
