@@ -212,7 +212,7 @@ const initializeEvents = () => {
 // Écouteur d'événement pour le chargement de la page
 document.addEventListener("DOMContentLoaded", () => {
   initializeEvents();
-                                                 //PARTIE SELECT
+                                                 //PARTIE FILTRES/SELECT
   // Create Select instances
   // Créer des instances de sélection
   selectIngredients = new Filters({
