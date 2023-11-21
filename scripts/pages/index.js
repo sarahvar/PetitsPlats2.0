@@ -1,7 +1,7 @@
 // Import necessary modules
 // Importation des modules nécessaires
 import { Recettes } from "../../factories/Recettes.js";
-import { Filters } from "../../factories/Filters.js";
+// import { Filters } from "../../factories/Filters.js";
 
 // Create an instance of the Recipes class
 // Création d'une instance de la classe Recettes
@@ -212,57 +212,58 @@ const initializeEvents = () => {
 // Écouteur d'événement pour le chargement de la page
 document.addEventListener("DOMContentLoaded", () => {
   initializeEvents();
-                                                 //PARTIE FILTRES/SELECT
-  // Create Select instances
-  // Créer des instances de sélection
-  selectIngredients = new Filters({
-    selectElement: "#selectIngredients",
-    defaultSelectLabel: "Ingrédients",
-    initialListItem: loadIngredients(recipes.data),
-    searchEventCallback: handleSelectIngredientOnSearchEvent,
-    deleteTagEventCallBack: (tags) => {
-      searchResult = recipes.searchRecipeExt(searchTerms, tags, selectAppareils.listItem, selectUstensiles.listItem)
-      recipes.displaySearchResult({
-        searchTerms: "",
-        result: searchResult
-      });
+})
+//                                                  //PARTIE FILTRES/SELECT
+//   // Create Select instances
+//   // Créer des instances de sélection
+//   selectIngredients = new Filters({
+//     selectElement: "#selectIngredients",
+//     defaultSelectLabel: "Ingrédients",
+//     initialListItem: loadIngredients(recipes.data),
+//     searchEventCallback: handleSelectIngredientOnSearchEvent,
+//     deleteTagEventCallBack: (tags) => {
+//       searchResult = recipes.searchRecipeExt(searchTerms, tags, selectAppareils.listItem, selectUstensiles.listItem)
+//       recipes.displaySearchResult({
+//         searchTerms: "",
+//         result: searchResult
+//       });
 
-      resetSelects();
-    },
-    resetEventCallBack: handleSelectOnResetEvent
-  });
+//       resetSelects();
+//     },
+//     resetEventCallBack: handleSelectOnResetEvent
+//   });
 
-  selectAppareils = new Filters({
-    selectElement: "#selectAppareils",
-    defaultSelectLabel: "Appareils",
-    initialListItem: loadAppareils(recipes.data),
-    searchEventCallback: handleSelectApplianceOnSearchEvent,
-    deleteTagEventCallBack: (tags) => {
-      searchResult = recipes.searchRecipeExt(searchTerms, selectIngredients.listItem, tags, selectUstensiles.listItem)
-      recipes.displaySearchResult({
-        searchTerms: "",
-        result: searchResult
-      });
-      resetSelects();
-    },
-    resetEventCallBack: handleSelectOnResetEvent
-  });
+//   selectAppareils = new Filters({
+//     selectElement: "#selectAppareils",
+//     defaultSelectLabel: "Appareils",
+//     initialListItem: loadAppareils(recipes.data),
+//     searchEventCallback: handleSelectApplianceOnSearchEvent,
+//     deleteTagEventCallBack: (tags) => {
+//       searchResult = recipes.searchRecipeExt(searchTerms, selectIngredients.listItem, tags, selectUstensiles.listItem)
+//       recipes.displaySearchResult({
+//         searchTerms: "",
+//         result: searchResult
+//       });
+//       resetSelects();
+//     },
+//     resetEventCallBack: handleSelectOnResetEvent
+//   });
 
-  selectUstensiles = new Filters ({
-    selectElement: "#selectUstensiles",
-    defaultSelectLabel: "Ustensils",
-    initialListItem: loadUstensils(recipes.data),
-    searchEventCallback: handleSelectUstensilsOnSearchEvent,
-    deleteTagEventCallBack: (tags) => {
-      searchResult = recipes.searchRecipeExt(searchTerms, selectIngredients.listItem, selectAppareils.listItem, tags)
-      recipes.displaySearchResult({
-        searchTerms: "",
-        result: searchResult
-      });
-      resetSelects();
-    },
-    resetEventCallBack: handleSelectOnResetEvent
-  });
+//   selectUstensiles = new Filters ({
+//     selectElement: "#selectUstensiles",
+//     defaultSelectLabel: "Ustensils",
+//     initialListItem: loadUstensils(recipes.data),
+//     searchEventCallback: handleSelectUstensilsOnSearchEvent,
+//     deleteTagEventCallBack: (tags) => {
+//       searchResult = recipes.searchRecipeExt(searchTerms, selectIngredients.listItem, selectAppareils.listItem, tags)
+//       recipes.displaySearchResult({
+//         searchTerms: "",
+//         result: searchResult
+//       });
+//       resetSelects();
+//     },
+//     resetEventCallBack: handleSelectOnResetEvent
+//   });
 
-  recipes.displayRecipes();
-});
+//   recipes.displayRecipes();
+// });
