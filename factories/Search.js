@@ -1,7 +1,7 @@
 // Import recipes from the data file
 // Importation des recettes depuis le fichier de données
 import { recipes } from "../data/recipes.js";
-import {  generateHTMLCard, generateHTMLIngredient} from "./Display.js";
+
 
 export class Search {
   // Class properties
