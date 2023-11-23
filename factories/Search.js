@@ -58,28 +58,36 @@ export class Search {
       const { name, description, ingredients } = recipe;
       const lowerCaseName = name.toLowerCase();
       const lowerCaseDescription = description.toLowerCase();
-      const ingredientMatch = this.ingredientMatch(ingredients, searchTerms);
   
-      if (lowerCaseName.includes(searchTerms) || lowerCaseDescription.includes(searchTerms) || ingredientMatch) {
+      let matchInNameOrDescription = false;
+      if (lowerCaseName.includes(searchTerms) || lowerCaseDescription.includes(searchTerms)) {
+        matchInNameOrDescription = true;
+      }
+  
+      if (matchInNameOrDescription) {
         matchingRecipes.push(recipe);
+      } else {
+        // Aucune correspondance dans le nom ou la description, vérifiez les ingrédients
+        let ingredientMatch = false;
+        for (let j = 0; j < ingredients.length; j++) {
+          const anIngredient = ingredients[j];
+          const { ingredient } = anIngredient;
+  
+          if (ingredient.toLowerCase() === searchTerms) {
+            ingredientMatch = true;
+            break;
+          }
+        }
+  
+        if (ingredientMatch) {
+          matchingRecipes.push(recipe);
+        }
       }
     }
   
     return matchingRecipes;
   }
   
-  ingredientMatch(ingredients, searchTerm) {
-    for (let i = 0; i < ingredients.length; i++) {
-      const anIngredient = ingredients[i];
-      const { ingredient } = anIngredient;
-  
-      if (ingredient.toLowerCase() === searchTerm) {
-        return true;
-      }
-    }
-  
-    return false;
-  }
   // Searches for recipes based on multiple criteria (ingredient, appareil, ustensile)
   // Recherche des recettes en fonction de plusieurs critères (ingrédient, appareil, ustensile)
   searchRecipeExt(searchTerms, ingredientTags, appareilTags, ustensilTags) {
