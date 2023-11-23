@@ -6,7 +6,7 @@ let totalRecipes = document.querySelector("#totalRecipes");
 
 // Generates HTML for a recipe card
 // Génère du HTML pour une carte de recette
-export function generateHTMLCard(recipe, ingredientInsertHtml) {
+function generateHTMLCard(recipe, ingredientInsertHtml) {
   return `
       <article class="recipe">
           <img src=../assets/images/${recipe.image} alt=${recipe.name} loading="lazy" />
@@ -28,9 +28,8 @@ export function generateHTMLCard(recipe, ingredientInsertHtml) {
       `;
 }
 
-// Generates HTML for an ingredient
 // Génère du HTML pour un ingrédient
-export function generateHTMLIngredient(ingredient) {
+function generateHTMLIngredient(ingredient) {
   if (ingredient.unit === "" || ingredient.unit === undefined) {
     if (ingredient.quantity) {
       return `
