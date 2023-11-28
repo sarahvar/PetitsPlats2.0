@@ -51,7 +51,7 @@ export class Search {
   searchRecipes(searchTerms) {
     searchTerms = searchTerms.toLowerCase();
     
-    return recipes.filter((recipe) => {
+    return this.data.filter((recipe) => {
       const { name, description, ingredients } = recipe;
       const lowerCaseName = name.toLowerCase();
       const lowerCaseDescription = description.toLowerCase();
