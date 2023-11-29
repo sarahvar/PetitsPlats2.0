@@ -28,7 +28,7 @@ export class Search {
       const { ingredient } = anIngredient;
       return ingredient.toLowerCase().includes(searchTerm.toLowerCase());
     });
-    return matchingIngredient != null;
+    return matchingIngredient != undefined;
   }
 
   // Checks if there is a match for a given appareil (appliance)
