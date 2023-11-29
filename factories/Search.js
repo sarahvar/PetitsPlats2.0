@@ -24,11 +24,11 @@ export class Search {
   // Checks if there is a match for a given ingredient in a list
   // Vérifie s'il y a une correspondance pour un ingrédient donné dans une liste
   IngredientMatch(ingredients, searchTerm) {
-    const matchingIngredients = ingredients.filter((anIngredient) => {
+    const matchingIngredient = ingredients.find((anIngredient) => {
       const { ingredient } = anIngredient;
-      return ingredient.toLowerCase() === searchTerm.toLowerCase();
+      return ingredient.toLowerCase().includes(searchTerm.toLowerCase());
     });
-    return matchingIngredients.length > 0;
+    return matchingIngredient != null;
   }
 
   // Checks if there is a match for a given appareil (appliance)
