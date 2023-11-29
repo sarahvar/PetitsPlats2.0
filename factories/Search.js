@@ -49,45 +49,23 @@ export class Search {
   // Searches for recipes based on a search term
   // Recherche des recettes en fonction d'un terme de recherche (recherche principale)
   searchRecipes(searchTerms) {
-    searchTerms = searchTerms.toLowerCase();
-  
-    let matchingRecipes = [];
-  
-    for (let i = 0; i < this.data.length; i++) {
-      const recipe = this.data[i];
+    const filteredRecipes = [];
+    searchTerms = searchTerms.trim().toLowerCase();
+    for (const recipe of this.data) {
       const { name, description, ingredients } = recipe;
       const lowerCaseName = name.toLowerCase();
       const lowerCaseDescription = description.toLowerCase();
-  
-      let matchInNameOrDescription = false;
-      if (lowerCaseName.includes(searchTerms) || lowerCaseDescription.includes(searchTerms)) {
-        matchInNameOrDescription = true;
-      }
-  
-      if (matchInNameOrDescription) {
-        matchingRecipes.push(recipe);
-      } else {
-        // Aucune correspondance dans le nom ou la description, vérifiez les ingrédients
-        let ingredientMatch = false;
-        for (let j = 0; j < ingredients.length; j++) {
-          const anIngredient = ingredients[j];
-          const { ingredient } = anIngredient;
-  
-          if (ingredient.toLowerCase() === searchTerms) {
-            ingredientMatch = true;
-            break;
-          }
-        }
-  
-        if (ingredientMatch) {
-          matchingRecipes.push(recipe);
-        }
+      const Ingredient = this.IngredientMatch(ingredients, searchTerms);
+      if (
+        lowerCaseName.includes(searchTerms) ||
+        lowerCaseDescription.includes(searchTerms) ||
+        Ingredient
+      ) {
+        filteredRecipes.push(recipe);
       }
     }
-  
-    return matchingRecipes;
+    return filteredRecipes;
   }
-  
   // Searches for recipes based on multiple criteria (ingredient, appareil, ustensile)
   // Recherche des recettes en fonction de plusieurs critères (ingrédient, appareil, ustensile)
   searchRecipeExt(searchTerms, ingredientTags, appareilTags, ustensilTags) {
