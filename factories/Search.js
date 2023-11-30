@@ -24,13 +24,20 @@ export class Search {
   // Checks if there is a match for a given ingredient in a list
   // Vérifie s'il y a une correspondance pour un ingrédient donné dans une liste
   IngredientMatch(ingredients, searchTerm) {
-    const matchingIngredient = ingredients.find((anIngredient) => {
+    searchTerm = searchTerm.toLowerCase();
+  
+    for (let i = 0; i < ingredients.length; i++) {
+      const anIngredient = ingredients[i];
       const { ingredient } = anIngredient;
-      return ingredient.toLowerCase().includes(searchTerm.toLowerCase());
-    });
-    return matchingIngredient != undefined;
+  
+      if (ingredient.toLowerCase().includes(searchTerm)) {
+        return true;
+      }
+    }
+  
+    return false;
   }
-
+  
   // Checks if there is a match for a given appareil (appliance)
   // Vérifie s'il y a une correspondance pour un appareil donné
   AppareilMatch(anAppareil, searchTerm) {
