@@ -109,7 +109,7 @@ export class FilterTags {
   // Supprime une balise et désélectionne l'élément correspondant
   removeTag(tagToRemove) {
     console.log('REMOVE TAGS:', tagToRemove.innerText)
-    this.tags.removeChild(tagToRemove);
+    tagToRemove.remove();
     this.deselectItemByName(tagToRemove.innerText);
     this.select.classList.toggle("select--active");
 
@@ -118,6 +118,7 @@ export class FilterTags {
       this.onDeleteTagEvent(this.listItem);
     }
   }
+
 
   // Creates a tag element and adds it to the tags container
   // Crée un élément de balise et l'ajoute au conteneur des balises
