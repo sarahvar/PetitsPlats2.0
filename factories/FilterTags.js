@@ -108,18 +108,24 @@ export class FilterTags {
   // Removes a tag and deselects the corresponding item
   // Supprime une balise et désélectionne l'élément correspondant
   removeTag(tagToRemove) {
-    console.log('REMOVE TAGS:', tagToRemove.innerText)
-    this.deselectItemByName(tagToRemove.innerText);
-    this.tags.removeChild(tagToRemove);
-    this.select.classList.toggle("select--active");
-
-    if (this.onDeleteTagEvent) {
-      console.log("ON DELETE TAG EVENT");
-      this.onDeleteTagEvent(this.listItem);
+    console.log('REMOVE TAGS:', tagToRemove.innerText);
+  
+    if (this.tags.contains(tagToRemove)) {
+      tagToRemove.remove();
+  
+      this.deselectItemByName(tagToRemove.innerText);
+      this.select.classList.remove("select--active");
+  
+      if (this.onDeleteTagEvent) {
+        console.log("ON DELETE TAG EVENT");
+        this.onDeleteTagEvent(this.listItem);
+      }
+    } else {
+      console.error("Error: tagToRemove is not a child of this.tags");
     }
   }
 
-  // Creates a tag element and adds it to the tags container
+// Creates a tag element and adds it to the tags container
   // Crée un élément de balise et l'ajoute au conteneur des balises
   createTag(name) {
     const newTag = document.createElement("span");
@@ -131,12 +137,14 @@ export class FilterTags {
 
     newTag.appendChild(image);
     newTag.addEventListener("click", (event) => {
-      this.removeTag(event.target.parentNode);
+      this.removeTag(event.currentTarget);
     });
 
     this.tags.appendChild(newTag);
-    let selectedItem = this.listItem.find(c => c.name == name)
-    selectedItem.isSelected = true
+    let selectedItem = this.listItem.find(c => c.name == name);
+    if (selectedItem) {
+      selectedItem.isSelected = true;
+    }
   }
 
   // Sets up event listeners for the select button and search input
