@@ -135,6 +135,8 @@ export class FilterTags {
     });
 
     this.tags.appendChild(newTag);
+    let selectedItem = this.listItem.find(c => c.name == name)
+    selectedItem.isSelected = true
   }
 
   // Sets up event listeners for the select button and search input
@@ -154,7 +156,7 @@ export class FilterTags {
     if (currentLi.classList.contains("selected")) {
       currentLi.classList.remove("selected");
       this.select.classList.remove("select--active");
-      // this.searchInput.value = "";
+      this.searchInput.value = "";
       this.btnLabel.innerText = this.defaultLabel;
     } else {
       this.optionsItems.forEach((li) => {
