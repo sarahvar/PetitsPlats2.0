@@ -70,7 +70,14 @@ export class FilterTags {
     this.initialListItems = [...initialListItem];
     this.listItem = [...initialListItem];
     this.createListItems(this.listItem);
-  }
+    // Sort the initial list items alphabetically by name
+  this.initialListItems = [...initialListItem].sort((a, b) => a.name.localeCompare(b.name));
+
+  // Set the current list items
+  this.listItem = [...this.initialListItems];
+  this.createListItems(this.listItem);
+}
+
 
   // Initialization method, sets up event listeners
   // Méthode d'initialisation, configure les écouteurs d'événements
