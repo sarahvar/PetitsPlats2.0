@@ -109,8 +109,8 @@ export class FilterTags {
   // Supprime une balise et désélectionne l'élément correspondant
   removeTag(tagToRemove) {
     console.log('REMOVE TAGS:', tagToRemove.innerText)
-    tagToRemove.remove();
     this.deselectItemByName(tagToRemove.innerText);
+    this.tags.removeChild(tagToRemove);
     this.select.classList.toggle("select--active");
 
     if (this.onDeleteTagEvent) {
@@ -154,7 +154,7 @@ export class FilterTags {
     if (currentLi.classList.contains("selected")) {
       currentLi.classList.remove("selected");
       this.select.classList.remove("select--active");
-      this.searchInput.value = "";
+      // this.searchInput.value = "";
       this.btnLabel.innerText = this.defaultLabel;
     } else {
       this.optionsItems.forEach((li) => {

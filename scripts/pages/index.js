@@ -6,7 +6,7 @@ import { displayRecipes,  displaySearchResult } from "../../factories/Display.js
 
 // Create an instance of the Recipes class
 // Création d'une instance de la classe Recettes
-const recipes = new   Search();
+const recipes = new Search();
 
 // Initialize Select instances and variables
 // Initialisation des instances de Select et des variables
