@@ -227,10 +227,31 @@ createItemElement({ name, isSelected }) {
   this.options.appendChild(li);
 }
 
-// Fonction pour supprimer l'élément de liste
+// Ajoutez cette méthode à votre classe FilterTags
+updateTagsTotal() {
+  const totalTags = this.tags.children.length;
+  console.log('Total Tags:', totalTags);
+  // Vous pouvez faire ce que vous voulez avec le total des tags ici
+}
+
+// ... (autres méthodes)
+
+// Modifiez votre méthode removeListItem pour appeler updateTagsTotal
 removeListItem(li) {
+  // Récupérez le nom de l'élément
+  const itemName = li.textContent.trim();
+
+  // Recherchez le tag correspondant dans les enfants de this.tags
+  const tagToRemove = Array.from(this.tags.children).find(tag => tag.textContent.trim() === itemName);
+
+  // Si le tag correspondant est trouvé, supprimez-le
+  if (tagToRemove) {
+    this.removeTag(tagToRemove);
+    this.updateTagsTotal(); // Mettez à jour le total des tags après avoir supprimé un tag
+  }
+
+  // Supprimez également l'élément de la liste
   li.remove();
-  // Ajoutez ici la logique supplémentaire si nécessaire
 }
   // Unselects all items and optionally emits the reset event
   // Désélectionne tous les éléments et émet éventuellement l'événement de réinitialisation
