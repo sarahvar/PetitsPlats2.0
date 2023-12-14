@@ -180,8 +180,6 @@ export class FilterTags {
           li.classList.remove("selected");
         });
         currentLi.classList.add("selected");
-        // Ne mettez pas à jour le libellé du bouton avec le nom de l'élément sélectionné
-        this.btnLabel.innerText = "Ingrédients";
         this.selectedItem = currentLi.innerText;
 
         this.createTag(currentLi.innerText);
