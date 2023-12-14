@@ -55,6 +55,7 @@ export class FilterTags {
     this.tags = document.getElementById("tags");
     this.defaultLabel = defaultSelectLabel;
 
+
     // Assign callback functions
     // Affectez les fonctions de callback
     this.onSearchEvent = searchEventCallback;
@@ -76,8 +77,7 @@ export class FilterTags {
   // Set the current list items
   this.listItem = [...this.initialListItems];
   this.createListItems(this.listItem);
-}
-
+  }
 
   // Initialization method, sets up event listeners
   // Méthode d'initialisation, configure les écouteurs d'événements
@@ -198,17 +198,40 @@ export class FilterTags {
   }
 
   // Creates a list item in the options container
-  // Crée un élément de liste dans le conteneur des options
-   createItemElement({ name, isSelected }) {
-    let li = document.createElement("li");
-    li.textContent = name;
-    li.className = isSelected ? "selected" : "";
-    li.addEventListener("click", () => {
-      this.handleItemClick(li);
+// Crée un élément de liste dans le conteneur des options
+createItemElement({ name, isSelected }) {
+  let li = document.createElement("li");
+  li.textContent = name;
+  li.className = isSelected ? "selected" : "";
+
+  // Ajoutez l'image seulement si l'élément est sélectionné
+  if (isSelected) {
+    const image = document.createElement("img");
+    image.className = "img my-custom-class";
+    image.src = "../assets/xmark-circle.svg";
+    image.alt = "xmark-circle";
+    
+    // Ajoutez un gestionnaire d'événements pour le clic sur l'image
+    image.addEventListener("click", (event) => {
+      event.stopPropagation(); // Empêche la propagation de l'événement de clic au conteneur li
+      this.removeListItem(li);
     });
-    this.options.appendChild(li);
+
+    li.appendChild(image);
   }
 
+  li.addEventListener("click", () => {
+    this.handleItemClick(li);
+  });
+
+  this.options.appendChild(li);
+}
+
+// Fonction pour supprimer l'élément de liste
+removeListItem(li) {
+  li.remove();
+  // Ajoutez ici la logique supplémentaire si nécessaire
+}
   // Unselects all items and optionally emits the reset event
   // Désélectionne tous les éléments et émet éventuellement l'événement de réinitialisation
   unselectAllItems(emitEvent = false) {
