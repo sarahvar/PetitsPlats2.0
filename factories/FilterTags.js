@@ -168,35 +168,39 @@ export class FilterTags {
   // Handles click events on list items
   // Gère les événements de clic sur les éléments de liste
   handleItemClick(currentLi) {
-    if (currentLi.classList.contains("selected")) {
-      currentLi.classList.remove("selected");
-      this.select.classList.remove("select--active");
-      this.searchInput.value = "";
-      this.btnLabel.innerText = this.defaultLabel;
-    } else {
-      this.optionsItems.forEach((li) => {
-        li.classList.remove("selected");
+    // Ajoutez cette condition pour vérifier si l'élément actuel est différent de "Ingrédients"
+    if (currentLi.innerText !== "Ingrédients") {
+      if (currentLi.classList.contains("selected")) {
+        currentLi.classList.remove("selected");
+        this.select.classList.remove("select--active");
+        this.searchInput.value = "";
+        this.btnLabel.innerText = "Ingrédients"; // Mettez toujours à jour le libellé avec "Ingrédients"
+      } else {
+        this.optionsItems.forEach((li) => {
+          li.classList.remove("selected");
+        });
+        currentLi.classList.add("selected");
+        // Ne mettez pas à jour le libellé du bouton avec le nom de l'élément sélectionné
+        this.btnLabel.innerText = "Ingrédients";
+        this.selectedItem = currentLi.innerText;
+
+        this.createTag(currentLi.innerText);
+      }
+
+      this.listItem = this.listItem.map((item) => {
+        return {
+          name: item.name,
+          isSelected: item.name === currentLi.innerText
+        };
       });
-      currentLi.classList.add("selected");
-      this.btnLabel.innerText = currentLi.innerText;
-      this.selectedItem = currentLi.innerText;
 
-      this.createTag(currentLi.innerText);
+      if (this.onSearchEvent) {
+        this.onSearchEvent(this.selectedItem);
+      }
+      this.select.classList.toggle("select--active");
     }
-
-    this.listItem = this.listItem.map((item) => {
-      return {
-        name: item.name,
-        isSelected: item.name === currentLi.innerText
-      };
-    });
-
-    if (this.onSearchEvent) {
-      this.onSearchEvent(this.selectedItem);
-    }
-    this.select.classList.toggle("select--active");
   }
-
+  
   // Creates a list item in the options container
 // Crée un élément de liste dans le conteneur des options
 createItemElement({ name, isSelected }) {
@@ -228,31 +232,31 @@ createItemElement({ name, isSelected }) {
 }
 
 // Ajoutez cette méthode à votre classe FilterTags
-updateTagsTotal() {
-  const totalTags = this.tags.children.length;
-  console.log('Total Tags:', totalTags);
-  // Vous pouvez faire ce que vous voulez avec le total des tags ici
-}
-
-// ... (autres méthodes)
-
-// Modifiez votre méthode removeListItem pour appeler updateTagsTotal
-removeListItem(li) {
-  // Récupérez le nom de l'élément
-  const itemName = li.textContent.trim();
-
-  // Recherchez le tag correspondant dans les enfants de this.tags
-  const tagToRemove = Array.from(this.tags.children).find(tag => tag.textContent.trim() === itemName);
-
-  // Si le tag correspondant est trouvé, supprimez-le
-  if (tagToRemove) {
-    this.removeTag(tagToRemove);
-    this.updateTagsTotal(); // Mettez à jour le total des tags après avoir supprimé un tag
+  updateTagsTotal() {
+    const totalTags = this.tags.children.length;
+    console.log('Total Tags:', totalTags);
+    // Vous pouvez faire ce que vous voulez avec le total des tags ici
   }
 
-  // Supprimez également l'élément de la liste
-  li.remove();
-}
+  // ... (autres méthodes)
+
+  // Modifiez votre méthode removeListItem pour appeler updateTagsTotal
+  removeListItem(li) {
+    // Récupérez le nom de l'élément
+    const itemName = li.textContent.trim();
+
+    // Recherchez le tag correspondant dans les enfants de this.tags
+    const tagToRemove = Array.from(this.tags.children).find(tag => tag.textContent.trim() === itemName);
+
+    // Si le tag correspondant est trouvé, supprimez-le
+    if (tagToRemove) {
+      this.removeTag(tagToRemove);
+      this.updateTagsTotal(); // Mettez à jour le total des tags après avoir supprimé un tag
+    }
+
+    // Supprimez également l'élément de la liste
+    li.remove();
+  }
   // Unselects all items and optionally emits the reset event
   // Désélectionne tous les éléments et émet éventuellement l'événement de réinitialisation
   unselectAllItems(emitEvent = false) {
