@@ -55,6 +55,7 @@ export class FilterTags {
     this.tags = document.getElementById("tags");
     this.defaultLabel = defaultSelectLabel;
 
+
     // Assign callback functions
     // Affectez les fonctions de callback
     this.onSearchEvent = searchEventCallback;
@@ -70,6 +71,12 @@ export class FilterTags {
     this.initialListItems = [...initialListItem];
     this.listItem = [...initialListItem];
     this.createListItems(this.listItem);
+    // Sort the initial list items alphabetically by name
+  this.initialListItems = [...initialListItem].sort((a, b) => a.name.localeCompare(b.name));
+
+  // Set the current list items
+  this.listItem = [...this.initialListItems];
+  this.createListItems(this.listItem);
   }
 
   // Initialization method, sets up event listeners
@@ -108,19 +115,24 @@ export class FilterTags {
   // Removes a tag and deselects the corresponding item
   // Supprime une balise et désélectionne l'élément correspondant
   removeTag(tagToRemove) {
-    console.log('REMOVE TAGS:', tagToRemove.innerText)
-    tagToRemove.remove();
-    this.deselectItemByName(tagToRemove.innerText);
-    this.select.classList.toggle("select--active");
-
-    if (this.onDeleteTagEvent) {
-      console.log("ON DELETE TAG EVENT");
-      this.onDeleteTagEvent(this.listItem);
+    console.log('REMOVE TAGS:', tagToRemove.innerText);
+  
+    if (this.tags.contains(tagToRemove)) {
+      tagToRemove.remove();
+  
+      this.deselectItemByName(tagToRemove.innerText);
+      this.select.classList.remove("select--active");
+  
+      if (this.onDeleteTagEvent) {
+        console.log("ON DELETE TAG EVENT");
+        this.onDeleteTagEvent(this.listItem);
+      }
+    } else {
+      console.error("Error: tagToRemove is not a child of this.tags");
     }
   }
 
-
-  // Creates a tag element and adds it to the tags container
+// Creates a tag element and adds it to the tags container
   // Crée un élément de balise et l'ajoute au conteneur des balises
   createTag(name) {
     const newTag = document.createElement("span");
@@ -132,10 +144,14 @@ export class FilterTags {
 
     newTag.appendChild(image);
     newTag.addEventListener("click", (event) => {
-      this.removeTag(event.target.parentNode);
+      this.removeTag(event.currentTarget);
     });
 
     this.tags.appendChild(newTag);
+    let selectedItem = this.listItem.find(c => c.name == name);
+    if (selectedItem) {
+      selectedItem.isSelected = true;
+    }
   }
 
   // Sets up event listeners for the select button and search input
@@ -152,47 +168,93 @@ export class FilterTags {
   // Handles click events on list items
   // Gère les événements de clic sur les éléments de liste
   handleItemClick(currentLi) {
-    if (currentLi.classList.contains("selected")) {
-      currentLi.classList.remove("selected");
-      this.select.classList.remove("select--active");
-      this.searchInput.value = "";
-      this.btnLabel.innerText = this.defaultLabel;
-    } else {
-      this.optionsItems.forEach((li) => {
-        li.classList.remove("selected");
+    // Ajoutez cette condition pour vérifier si l'élément actuel est différent de "Ingrédients"
+    if (currentLi.innerText !== "Ingrédients") {
+      if (currentLi.classList.contains("selected")) {
+        currentLi.classList.remove("selected");
+        this.select.classList.remove("select--active");
+        this.searchInput.value = "";
+        this.btnLabel.innerText = "Ingrédients"; // Mettez toujours à jour le libellé avec "Ingrédients"
+      } else {
+        this.optionsItems.forEach((li) => {
+          li.classList.remove("selected");
+        });
+        currentLi.classList.add("selected");
+        this.selectedItem = currentLi.innerText;
+
+        this.createTag(currentLi.innerText);
+      }
+
+      this.listItem = this.listItem.map((item) => {
+        return {
+          name: item.name,
+          isSelected: item.name === currentLi.innerText
+        };
       });
-      currentLi.classList.add("selected");
-      this.btnLabel.innerText = currentLi.innerText;
-      this.selectedItem = currentLi.innerText;
 
-      this.createTag(currentLi.innerText);
+      if (this.onSearchEvent) {
+        this.onSearchEvent(this.selectedItem);
+      }
+      this.select.classList.toggle("select--active");
     }
-
-    this.listItem = this.listItem.map((item) => {
-      return {
-        name: item.name,
-        isSelected: item.name === currentLi.innerText
-      };
-    });
-
-    if (this.onSearchEvent) {
-      this.onSearchEvent(this.selectedItem);
-    }
-    this.select.classList.toggle("select--active");
   }
-
+  
   // Creates a list item in the options container
-  // Crée un élément de liste dans le conteneur des options
-   createItemElement({ name, isSelected }) {
-    let li = document.createElement("li");
-    li.textContent = name;
-    li.className = isSelected ? "selected" : "";
-    li.addEventListener("click", () => {
-      this.handleItemClick(li);
+// Crée un élément de liste dans le conteneur des options
+createItemElement({ name, isSelected }) {
+  let li = document.createElement("li");
+  li.textContent = name;
+  li.className = isSelected ? "selected" : "";
+
+  // Ajoutez l'image seulement si l'élément est sélectionné
+  if (isSelected) {
+    const image = document.createElement("img");
+    image.className = "img my-custom-class";
+    image.src = "../assets/xmark-circle.svg";
+    image.alt = "xmark-circle";
+    
+    // Ajoutez un gestionnaire d'événements pour le clic sur l'image
+    image.addEventListener("click", (event) => {
+      event.stopPropagation(); // Empêche la propagation de l'événement de clic au conteneur li
+      this.removeListItem(li);
     });
-    this.options.appendChild(li);
+
+    li.appendChild(image);
   }
 
+  li.addEventListener("click", () => {
+    this.handleItemClick(li);
+  });
+
+  this.options.appendChild(li);
+}
+
+// Ajoutez cette méthode à votre classe FilterTags
+  updateTagsTotal() {
+    const totalTags = this.tags.children.length;
+    console.log('Total Tags:', totalTags);
+    // Vous pouvez faire ce que vous voulez avec le total des tags ici
+  }
+
+  // ... (autres méthodes)
+
+  // Modifiez votre méthode removeListItem pour appeler updateTagsTotal
+  removeListItem(li) {
+    // Récupérez le nom de l'élément
+    const itemName = li.textContent.trim();
+
+    // Recherchez le tag correspondant dans les enfants de this.tags
+    const tagToRemove = Array.from(this.tags.children).find(tag => tag.textContent.trim() === itemName);
+
+    // Si le tag correspondant est trouvé, supprimez-le
+    if (tagToRemove) {
+      this.removeTag(tagToRemove);
+      this.updateTagsTotal(); // Mettez à jour le total des tags après avoir supprimé un tag
+    }
+
+    // Supprimez également l'élément de la liste
+    li.remove();
+  }
   // Unselects all items and optionally emits the reset event
   // Désélectionne tous les éléments et émet éventuellement l'événement de réinitialisation
   unselectAllItems(emitEvent = false) {
@@ -234,30 +296,23 @@ export class FilterTags {
     return this.listItem;
   }
 
-  // Updates the list of items with new values
-  // Met à jour la liste des éléments avec de nouvelles valeurs
-  updateSelectedItems(newListItem) {
-    const updateSelectedItem = newListItem.map((item) => {
-      const index = this.listItem.findIndex((findItem) => item.name === findItem.name);
-      if (index >= 0) {
-        return {
-          name: item.name,
-          isSelected: this.listItem[index].isSelected
-        };
-      }
-      return item;
-    });
+// Updates the list of items with new values
+// Met à jour la liste des éléments avec de nouvelles valeurs
+updateSelectedItems(newListItems) {
+  this.listItem = this.listItem.map((item) => {
+    const newItem = newListItems.find((newItem) => newItem.name === item.name);
+    return newItem ? { ...newItem, isSelected: item.isSelected } : item;
+  });
 
-    this.listItem = [...updateSelectedItem];
-    this.createListItems(this.listItem);
-  }
-
-  // Resets the select and tags to their initial state
-  // Réinitialise la sélection et les balises à leur état initial
-  reset() {
-    this.selectedItem = "";
-    this.unselectAllItems();
-    this.tags.innerHTML = "";
-  }
+  this.createListItems(this.listItem);
 }
 
+// Resets the select and tags to their initial state
+// Réinitialise la sélection et les balises à leur état initial
+reset() {
+  this.selectedItem = "";
+  this.unselectAllItems();
+  this.tags.innerHTML = "";
+}
+
+}

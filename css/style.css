@@ -15,7 +15,7 @@ html {
     font-weight: 700;
 }
 
-body{
+body {
     background-color: #E5E5E5;
 }
 
@@ -23,12 +23,14 @@ h1 {
     font-family: "Anton", sans-serif;
     font-weight: 400;
 }
-img{
+
+img {
     max-width: 100%;
     width: 100%;
     max-height: 100%;
     height: 100%;
 }
+
 .hero-banner h1 {
     color: #FFD15B;
     width: 890px;
@@ -83,6 +85,7 @@ header {
     margin-right: 10px;
     font-size: 1.2em;
 }
+
 .hero-banner form .icon:hover {
     background: #ffd15b;
 }
@@ -94,18 +97,20 @@ header {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 /* Styles du total des recettes */
 #totalRecipes {
-    display:flex;
-    position:relative;
-    justify-content:right;
-    align-items:center;
-    margin:0.5rem;
+    display: flex;
+    position: relative;
+    justify-content: right;
+    align-items: center;
+    margin: 0.5rem;
     top: 13px;
     font-family: "Anton";
     font-size: 23px;
-    color:#1B1B1B
-  }
+    color: #1B1B1B
+}
+
 /* Recipes */
 .containerxl {
     margin: 0 auto;
@@ -133,15 +138,15 @@ header {
 }
 
 .timeCooking {
-  position:relative;  
-  color:black;
-  font-weight:400;
-  font-size: 12px;
-  left: 350px;
-  top: -38rem;
-  background-color: #ffd15b;
-  border-radius: 25px;
-  padding: 10px 20px;
+    position: relative;
+    color: black;
+    font-weight: 400;
+    font-size: 12px;
+    left: 350px;
+    top: -38rem;
+    background-color: #ffd15b;
+    border-radius: 25px;
+    padding: 10px 20px;
 }
 
 .recipe-h2,
@@ -195,6 +200,7 @@ header {
     color: #7a7a7a;
     font-weight: 400;
 }
+
 /* Select */
 
 .topbar {
@@ -349,7 +355,14 @@ header {
     width: 10px;
     height: 10px
 }
-
+li {
+    display: flex;
+    align-items: center;
+  }
+.my-custom-class {
+    width: 15px;
+    margin-left: 30%;
+}
 .noIngredient {
     text-align: center;
     padding: 16px 0;
