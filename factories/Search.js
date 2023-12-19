@@ -19,7 +19,7 @@ export class Search {
     this.timeCooking = document.querySelector("#timeCooking");
   }
 
-                                            // BARRE DE RECHERCHE (SEARCH BAR)
+  // BARRE DE RECHERCHE (SEARCH BAR)
 
   // Checks if there is a match for a given ingredient in a list
   // Vérifie s'il y a une correspondance pour un ingrédient donné dans une liste
@@ -34,7 +34,7 @@ export class Search {
   // Checks if there is a match for a given appareil (appliance)
   // Vérifie s'il y a une correspondance pour un appareil donné
   AppareilMatch(anAppareil, searchTerm) {
-    return anAppareil.toLowerCase().includes(searchTerm);
+    return anAppareil.toLowerCase().includes(searchTerm.toLowerCase());
   }
 
   // Checks if there is a match for a given ustensile (utensil)
@@ -50,12 +50,12 @@ export class Search {
   // Recherche des recettes en fonction d'un terme de recherche (recherche principale)
   searchRecipes(searchTerms) {
     searchTerms = searchTerms.toLowerCase();
-    
+
     return this.data.filter((recipe) => {
       const { name, description, ingredients } = recipe;
       const lowerCaseName = name.toLowerCase();
       const lowerCaseDescription = description.toLowerCase();
-  
+
       if (lowerCaseName.includes(searchTerms) || lowerCaseDescription.includes(searchTerms)) {
         return true; // Correspondance trouvée dans le nom ou la description
       } else {
@@ -65,7 +65,7 @@ export class Search {
       }
     });
   }
-  
+
   // Searches for recipes based on multiple criteria (ingredient, appareil, ustensile)
   // Recherche des recettes en fonction de plusieurs critères (ingrédient, appareil, ustensile)
   searchRecipeExt(searchTerms, ingredientTags, appareilTags, ustensilTags) {
@@ -80,57 +80,57 @@ export class Search {
       filteredRecipes = [...this.data];
     }
 
-      let filteredRecipesByIngredient = [];
-      ingredientTags.forEach((anIngredient) => {
-        if (anIngredient.isSelected) {
-          const tempFilteredRecipes = filteredRecipes.filter((recipe) => {
-            const matchingIngredients = recipe.ingredients.filter((item) => {
-              const { ingredient } = item;
-              return ingredient.toLowerCase() === anIngredient.name.toLowerCase();
-            });
-            return matchingIngredients.length > 0;
+    let filteredRecipesByIngredient = [];
+    ingredientTags.forEach((anIngredient) => {
+      if (anIngredient.isSelected) {
+        const tempFilteredRecipes = filteredRecipes.filter((recipe) => {
+          const matchingIngredients = recipe.ingredients.filter((item) => {
+            const { ingredient } = item;
+            return ingredient.toLowerCase() === anIngredient.name.toLowerCase();
           });
-          filteredRecipesByIngredient = [
-            ...filteredRecipesByIngredient,
-            ...tempFilteredRecipes,
-          ];
-        }
-      })
-      if (filteredRecipesByIngredient.length > 0) {
-        filteredRecipes = [...filteredRecipesByIngredient];
+          return matchingIngredients.length > 0;
+        });
+        filteredRecipesByIngredient = [
+          ...filteredRecipesByIngredient,
+          ...tempFilteredRecipes,
+        ];
       }
+    })
+    if (filteredRecipesByIngredient.length > 0) {
+      filteredRecipes = [...filteredRecipesByIngredient];
+    }
 
-      let filteredRecipesByAppareil = [];
-      appareilTags.forEach((anAppareil) => {
-        if (anAppareil.isSelected) {
-          const tempFilteredRecipes = filteredRecipes.filter((recipe) => {
-            return this.AppareilMatch(recipe.appliance, anAppareil.name)
-          });
-          filteredRecipesByAppareil = [
-            ...filteredRecipesByAppareil,
-            ...tempFilteredRecipes,
-          ];
-        }
-      })
-      if (filteredRecipesByAppareil.length > 0) {
-        filteredRecipes = [...filteredRecipesByAppareil];
+    let filteredRecipesByAppareil = [];
+    appareilTags.forEach((anAppareil) => {
+      if (anAppareil.isSelected) {
+        const tempFilteredRecipes = filteredRecipes.filter((recipe) => {
+          return this.AppareilMatch(recipe.appliance, anAppareil.name)
+        });
+        filteredRecipesByAppareil = [
+          ...filteredRecipesByAppareil,
+          ...tempFilteredRecipes,
+        ];
       }
+    })
+    if (filteredRecipesByAppareil.length > 0) {
+      filteredRecipes = [...filteredRecipesByAppareil];
+    }
 
-      let filteredRecipesByUstensiles = [];
-      ustensilTags.forEach((anUstensile) => {
-        if (anUstensile.isSelected) {
-          const tempFilteredRecipes = filteredRecipes.filter((recipe) => {
-            return this.UstensilesMatch(recipe.ustensils, anUstensile.name)
-          });
-          filteredRecipesByUstensiles = [
-            ...filteredRecipesByUstensiles,
-            ...tempFilteredRecipes,
-          ];
-        }
-      })
-      if (filteredRecipesByUstensiles.length > 0) {
-        filteredRecipes = [...filteredRecipesByUstensiles];
+    let filteredRecipesByUstensiles = [];
+    ustensilTags.forEach((anUstensile) => {
+      if (anUstensile.isSelected) {
+        const tempFilteredRecipes = filteredRecipes.filter((recipe) => {
+          return this.UstensilesMatch(recipe.ustensils, anUstensile.name)
+        });
+        filteredRecipesByUstensiles = [
+          ...filteredRecipesByUstensiles,
+          ...tempFilteredRecipes,
+        ];
       }
+    })
+    if (filteredRecipesByUstensiles.length > 0) {
+      filteredRecipes = [...filteredRecipesByUstensiles];
+    }
     return filteredRecipes
   }
 

@@ -174,7 +174,6 @@ export class FilterTags {
         currentLi.classList.remove("selected");
         this.select.classList.remove("select--active");
         this.searchInput.value = "";
-        this.btnLabel.innerText = "Ingrédients"; // Mettez toujours à jour le libellé avec "Ingrédients"
       } else {
         this.optionsItems.forEach((li) => {
           li.classList.remove("selected");
@@ -235,8 +234,6 @@ createItemElement({ name, isSelected }) {
     console.log('Total Tags:', totalTags);
     // Vous pouvez faire ce que vous voulez avec le total des tags ici
   }
-
-  // ... (autres méthodes)
 
   // Modifiez votre méthode removeListItem pour appeler updateTagsTotal
   removeListItem(li) {
