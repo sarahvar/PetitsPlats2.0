@@ -253,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   selectUstensiles = new FilterTags({
     selectElement: "#selectUstensiles",
-    defaultSelectLabel: "Ustensils",
+    defaultSelectLabel: "Ustensiles",
     initialListItem: loadUstensils(recipes.data),
     searchEventCallback: handleSelectUstensilsOnSearchEvent,
     deleteTagEventCallBack: (tags) => {
