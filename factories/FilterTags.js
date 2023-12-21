@@ -295,12 +295,19 @@ createItemElement({ name, isSelected }) {
 
 // Updates the list of items with new values
 // Met à jour la liste des éléments avec de nouvelles valeurs
-updateSelectedItems(newListItems) {
-  this.listItem = this.listItem.map((item) => {
-    const newItem = newListItems.find((newItem) => newItem.name === item.name);
-    return newItem ? { ...newItem, isSelected: item.isSelected } : item;
-  });
+updateSelectedItems(newListItem) {
+  const updatedListItem = newListItem.map( (item) => {
+    const index = this.listItem.findIndex((findItem) => item.name === findItem.name)
+    if (index >= 0) {
+      return {
+        name: item.name,
+        isSelected: this.listItem[index].isSelected
+      }
+    }
+    return item;
+  })
 
+  this.listItem = [...updatedListItem];
   this.createListItems(this.listItem);
 }
 
