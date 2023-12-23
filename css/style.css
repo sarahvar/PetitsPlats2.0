@@ -143,7 +143,6 @@ header {
     color: black;
     font-weight: 400;
     font-size: 12px;
-    left: 350px;
     top: -38rem;
     background-color: #ffd15b;
     border-radius: 25px;
@@ -378,17 +377,28 @@ li {
 .notFound strong {
     font-size: 22px;
 }
+@media only screen and (min-width: 1440px) {
+.timeCooking {
+    position: relative;
+    color: black;
+    font-weight: 400;
+    font-size: 12px;
+    left: 340px;
+    top: -38rem;
+    background-color: #ffd15b;
+    border-radius: 25px;
+    padding: 10px 20px;
+}
+}
 
 @media only screen and (min-width: 1024px) {
-
-
     .recipes {
         flex-direction: initial;
         flex-wrap: wrap;
         justify-content: center;
     }
-
     .recipe {
         max-width: 30%;
     }
+    
 }
