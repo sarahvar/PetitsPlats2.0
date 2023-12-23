@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="/css/style.css" rel="stylesheet" />
   <meta charset="utf-8">
   <script src="https://kit.fontawesome.com/34d40b7fd3.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope&display=swap" rel="stylesheet" />
@@ -10,21 +10,19 @@
 </head>
 
 <body>
-  <!----Header-->
+  <!--Header-->
   <header>
     <img src="assets/header.jpg" alt="une assiette">
-    <div class="header-logo">
-      <img src="./assets/Logo.svg" alt="Logo des petits plats" loading="lazy" />
-    </div>
-    <!--Main Search-->
-    <!--Recherche principale-->
     <div class="hero-banner">
       <h1>
         CHERCHEZ PARMI PLUS DE 1500 RECETTES<br>DU QUOTIDIEN,SIMPLES ET
         DÉLICIEUSES
       </h1>
+    <div class="header-logo">
+      <img src="./assets/Logo.svg" alt="Logo des petits plats" loading="lazy" />
+    </div>
       <form>
-        <input type="search-bar" id="search-bar" placeholder="Rechercher une recette, un ingrédient, ..."
+        <input id="search-bar" type="text" placeholder="Rechercher une recette, un ingrédient, ..."
           aria-label="Rechercher une recette, un ingrédient, ..." />
         <div class="icon" id="icon">
           <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -83,18 +81,18 @@
         <!-- Nombre total de recettes -->
         <div id="totalRecipes">
           <span id="summer"></span>
-      </div>
+        </div>
       </div>
       <div id="tags" class="tags"></div>
     </section>
-    </div>
     <!--Les recettes-->
     <!--Recipes-->
     <section id="recipes" class="recipes">
     </section>
   </main>
+  <script src="./scripts/pages/index.js" type="module"></script>
+  <script src="./factories/FilterTags.js" type="module"></script>
 </body>
-<script src="./scripts/pages/index.js" type="module" defer></script>
-<script src="./factories/FilterTags.js" type="module" defer></script>
+
 
 </html>
