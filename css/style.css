@@ -377,13 +377,14 @@ li {
 .notFound strong {
     font-size: 22px;
 }
+
 @media only screen and (min-width: 1440px) {
 .timeCooking {
     position: relative;
     color: black;
     font-weight: 400;
     font-size: 12px;
-    left: 340px;
+    left: 290px;
     top: -38rem;
     background-color: #ffd15b;
     border-radius: 25px;
