@@ -143,6 +143,7 @@ header {
     color: black;
     font-weight: 400;
     font-size: 12px;
+    margin-left: 400px;
     top: -38rem;
     background-color: #ffd15b;
     border-radius: 25px;
@@ -377,21 +378,30 @@ li {
 .notFound strong {
     font-size: 22px;
 }
-@media only screen and (min-width: 1440px) {
+
+@media (min-width:1800px) and (max-width: 2080px) {
 .timeCooking {
     position: relative;
     color: black;
     font-weight: 400;
     font-size: 12px;
-    left: 340px;
+    left: -2rem;
     top: -38rem;
     background-color: #ffd15b;
     border-radius: 25px;
     padding: 10px 20px;
 }
+.recipes {
+    flex-direction: initial;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.recipe {
+    max-width: 30%;
+}
 }
 
-@media only screen and (min-width: 1024px) {
+@media (min-width: 1024px) and (max-width: 1789px) {
     .recipes {
         flex-direction: initial;
         flex-wrap: wrap;
@@ -399,6 +409,17 @@ li {
     }
     .recipe {
         max-width: 30%;
+    }
+    .timeCooking {
+        position: relative;
+        color: black;
+        font-weight: 400;
+        font-size: 12px;
+        left: -10rem;
+        top: -38rem;
+        background-color: #ffd15b;
+        border-radius: 25px;
+        padding: 10px 20px;
     }
     
 }
